@@ -50,30 +50,6 @@
   flex: 1.4;
 }
 
-.nhan-input {
-  font-size: 12px;
-  font-weight: 700;
-  color: #475569;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.input-select, .input-text {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  font-size: 14px;
-  background-color: var(--nen-trang);
-  outline: none;
-  color: var(--mau-chu-text);
-  transition: border-color 0.2s;
-}
-
-.input-select:focus, .input-text:focus {
-  border-color: var(--mau-chu-dao);
-}
-
 /* Thống kê */
 .thong-ke {
   background-color: #1e293b;
@@ -125,12 +101,6 @@
   gap: 30px;
 }
 
-.luoi-phong {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
 .tieu-de-vung {
   display: flex;
   justify-content: space-between;
@@ -176,14 +146,14 @@
   padding: 12px 32px;
   border-radius: 30px;
 }
-/* ==================== BỐ CỤC TRANG TÌM KIẾM TRỰC QUAN ==================== */
+
+/* BỐ CỤC TRANG TÌM KIẾM TRỰC QUAN */
 .trang-tim-kiem {
   display: flex;
   min-height: calc(100vh - 64px);
-  background-color: #fafbfd; /* Màu nền xám nhạt cao cấp */
+  background-color: #fafbfd;
 }
 
-/* 1. Thanh lọc bên trái (Sidebar) */
 .thanh-loc {
   width: 320px;
   background-color: var(--nen-trang);
@@ -264,7 +234,7 @@
   cursor: pointer;
 }
 
-/* 2. Nội dung hiển thị kết quả bên phải */
+/* Nội dung hiển thị kết quả */
 .noi-dung-ket-qua {
   flex: 1;
   padding: 30px;
@@ -318,11 +288,11 @@
   font-weight: 500;
   cursor: pointer;
 }
-/* map */
-/* ==================== BỐ CỤC TRANG BẢN ĐỒ (ban-do.html) ==================== */
+
+/* BỐ CỤC TRANG BẢN ĐỒ */
 .trang-ban-do {
   display: flex;
-  height: calc(100vh - 64px); /* Trừ đi chiều cao của header */
+  height: calc(100vh - 64px);
 }
 
 .khung-ban-do {
@@ -336,7 +306,6 @@
   height: 100%;
 }
 
-/* Hộp điều khiển nổi phía trên bản đồ */
 .hop-dieu-khien-ban-do {
   position: absolute;
   top: 20px;
@@ -403,7 +372,6 @@
   gap: 15px;
 }
 
-/* Thẻ thông tin phòng trọ nổi lên ở góc dưới khi bấm vào Marker ghim */
 .the-phong-chon {
   position: absolute;
   bottom: 25px;
@@ -441,7 +409,8 @@
   background-color: #f1f5f9;
   color: red;
 }
-/* ==================== TRANG TÀI KHOẢN (dang-nhap.html) ==================== */
+
+/* TRANG TÀI KHOẢN */
 .trang-tai-khoan {
   display: flex;
   align-items: center;
@@ -537,4 +506,92 @@
   color: var(--mau-chu-dao);
   text-decoration: none;
   font-weight: 700;
+}
+/* ==================== TRANG CHI TIẾT PHÒNG TRỌ (chi-tiet.html) ==================== */
+.trang-chi-tiet {
+  background-color: #fafbfd;
+  padding: 30px 0 60px 0;
+}
+
+.duong-dan-trang {
+  color: var(--mau-chu-phu);
+  margin-bottom: 25px;
+  font-size: 14px;
+}
+
+.duong-dan-trang a {
+  color: var(--mau-chu-phu);
+  text-decoration: none;
+}
+
+.duong-dan-trang a:hover {
+  color: var(--mau-chu-dao);
+}
+
+.dau-chi-tiet {
+  background-color: var(--nen-trang);
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border: 1px solid var(--mau-vien);
+}
+
+.tieu-de-chi-tiet {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--mau-chu-text);
+}
+
+.thong-tin-phu-chi-tiet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: var(--mau-chu-phu);
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.thong-tin-phu-chi-tiet > div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.luoi-chi-tiet {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Chia cột nội dung trái lớn, hộp liên hệ phải nhỏ */
+  gap: 25px;
+}
+
+.noi-dung-chinh-chi-tiet {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+/* ==================== FORM ĐĂNG TIN ĐƠN GỘP CHUẨN MẪU ==================== */
+.phan-nhap-lieu {
+  border-bottom: 1.5px dashed var(--mau-vien);
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.phan-nhap-lieu:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.nhom-nut-gui {
+  margin-top: 30px;
+  border-top: 1px solid #edf2f7;
+  padding-top: 25px;
+  text-align: center;
+}
+
+.nhom-nut-gui .btn {
+  width: 100%;
+  max-width: 320px;
+  padding: 14px;
+  font-size: 16px;
 }

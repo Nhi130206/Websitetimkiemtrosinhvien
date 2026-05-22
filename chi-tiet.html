@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết phòng trọ - NhaTroSV</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- LeafletJS (Thư viện Bản đồ con) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- Chỉ liên kết 1 file main.css duy nhất (trang sẽ tự import base, layout, components, pages) -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- jQuery cơ bản -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- JS xử lý dữ liệu -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="dau-trang">
+        <div class="khung-chua">
+            <nav class="thanh-dieu-huong">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span>🏠 NhaTroSV</span>
+                </a>
+                
+                <!-- Menu -->
+                <ul class="menu">
+                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+                    <li><a href="yeu-thich.html" class="menu__link">Yêu thích</a></li>
+                </ul>
+                
+                <!-- Actions -->
+                <div class="hanh-dong" id="vung-hanh-dong">
+                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== TRANG CHI TIẾT PHÒNG TRỌ ==================== -->
+    <!-- ID "chi-tiet-trang" để JS nhận biết trang này -->
+    <div class="trang-chi-tiet" id="chi-tiet-trang">
+        <div class="khung-chua">
+            <!-- Thanh điều hướng đường dẫn nhanh -->
+            <div class="duong-dan-trang">
+                <a href="index.html">Trang chủ</a> / <a href="tim-kiem.html">Tìm kiếm</a> / <span id="duong-dan-tieu-de">Chi tiết phòng</span>
+            </div>
+
+            <!-- Khối đầu: Tên phòng & Địa chỉ (Render tự động) -->
+            <div class="dau-chi-tiet" id="dau-chi-tiet"></div>
+
+            <div class="luoi-chi-tiet">
+                <!-- Cột trái: Nội dung chính -->
+                <div class="noi-dung-chinh-chi-tiet">
+                    <!-- Ảnh phòng trọ -->
+                    <div class="the-chi-tiet">
+                        <div class="khung-anh-placeholder" id="khung-anh-phong">🏠</div>
+                    </div>
+
+                    <!-- Lưới 3 thông số phụ nhanh -->
+                    <div class="luoi-thong-tin-phu" id="luoi-thong-tin-phu"></div>
+
+                    <!-- Bảng giá chi tiết chi phí hàng tháng -->
+                    <div class="the-chi-tiet">
+                        <h2 class="tieu-de-the">Chi phí chi tiết</h2>
+                        <div id="bang-chi-phi"></div>
+                    </div>
+
+                    <!-- Danh sách các tiện ích đi kèm -->
+                    <div class="the-chi-tiet">
+                        <h2 class="tieu-de-the">Tiện ích sẵn có</h2>
+                        <div class="danh-sach-tien-ich" id="danh-sach-tien-ich"></div>
+                    </div>
+
+                    <!-- Bản đồ Leaflet định vị phòng -->
+                    <div class="the-chi-tiet">
+                        <h2 class="tieu-de-the">Vị trí phòng trọ trên bản đồ</h2>
+                        <div id="ban-do-chi-tiet"></div>
+                    </div>
+                </div>
+
+                <!-- Cột phải: Hộp thông tin liên hệ chủ nhà (Render tự động) -->
+                <div>
+                    <div class="the-lien-he" id="the-lien-he"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="chan-trang">
+        <div class="khung-chua">
+            <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

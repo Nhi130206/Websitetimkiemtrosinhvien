@@ -1,23 +1,4 @@
-// đăng nhập đăng ký
-$(document).ready(function() {
-    
-    // Khi click vào chữ "Đăng ký ngay"
-    $('#sang-dang-ky').click(function(e) {
-        e.preventDefault(); // Ngăn trang bị tải lại
-        $('#form-dang-nhap').hide(); // Ẩn form đăng nhập
-        $('#sang-dang-ky').fadeIn(); // Hiện form đăng ký với hiệu ứng mượt
-    });
-
-    // Khi click vào chữ "Đăng nhập" ở dưới form đăng ký
-    $('#sang-dang-nhap').click(function(e) {
-        e.preventDefault();
-        $('#sang-dang-ky').hide(); // Ẩn form đăng ký
-        $('#form-dang-nhap').fadeIn(); // Hiện form đăng nhập
-    });
-})
-
-// });
-// Khởi tạo mảng người dùng rỗng (chỉ có dữ liệu khi người dùng đăng ký)
+// Khởi tạo mảng người dùng rỗng (chỉ lưu dữ liệu khi người dùng đăng ký thực tế)
 if (!localStorage.getItem("users")) {
   localStorage.setItem("users", JSON.stringify([]));
 }
@@ -34,6 +15,9 @@ const duLieuPhongTroMau = [
     area: 25,
     rating: 4.5,
     tag: "Còn 2 phòng",
+    amenities: ["wifi", "gac_lung"],
+    lat: 12.6512, 
+    lng: 108.0583,
     landlordId: 1
   },
   {
@@ -46,6 +30,9 @@ const duLieuPhongTroMau = [
     area: 18,
     rating: 4.0,
     tag: "Còn 5 phòng",
+    amenities: ["wifi"],
+    lat: 12.6530, 
+    lng: 108.0595,
     landlordId: 1
   },
   {
@@ -58,6 +45,9 @@ const duLieuPhongTroMau = [
     area: 35,
     rating: 4.8,
     tag: "Còn 1 phòng",
+    amenities: ["wifi", "may_giat", "gac_lung"],
+    lat: 12.6495, 
+    lng: 108.0560,
     landlordId: 1
   }
 ];

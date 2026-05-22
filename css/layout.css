@@ -60,10 +60,31 @@
 .hanh-dong {
   display: flex;
   gap: 12px;
+  align-items: center;
+}
+
+/* GIAO DIỆN ICON NGƯỜI DÙNG KHI ĐÃ ĐĂNG NHẬP */
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar-text {
+  background-color: #ebf3ff;
+  color: var(--mau-chu-dao);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
 }
 
 .nut-menu {
-  display: none;
+  display: none; /* Mặc định ẩn nút 3 gạch trên máy tính lớn */
   background: none;
   border: none;
   font-size: 20px;
@@ -77,4 +98,26 @@
   padding: 24px 0;
   text-align: center;
   font-size: 14px;
+}
+
+/* ==================== RESPONSIVE HEADER (CHO MÀN HÌNH NHỎ) ==================== */
+@media (max-width: 992px) {
+  .menu {
+    display: none; /* Ẩn thực đơn chữ khi màn hình bị thu nhỏ tránh đè chữ */
+  }
+
+  .nut-menu {
+    display: block; /* Hiện biểu tượng 3 gạch để sau này làm menu rút gọn */
+    margin-left: 15px;
+  }
+
+  .hanh-dong {
+    gap: 8px; /* Thu hẹp khoảng cách các nút đăng nhập */
+  }
+
+  /* Thu nhỏ kích thước các nút bấm trên giao diện hẹp */
+  .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
 }

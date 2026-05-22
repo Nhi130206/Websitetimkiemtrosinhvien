@@ -19,9 +19,17 @@
   color: var(--mau-chu-dao);
 }
 
+.btn--landlord:hover {
+  background-color: #d6e7ff;
+}
+
 .btn--login {
   background: var(--mau-chu-dao);
   color: var(--nen-trang);
+}
+
+.btn--login:hover {
+  background-color: var(--mau-chu-dao-hover);
 }
 
 .btn--chinh {
@@ -32,7 +40,32 @@
   font-size: 15px;
 }
 
-/* Thẻ "Tại sao chọn NhaTroSV" chuẩn thiết kế */
+/* Ô NHẬP LIỆU INPUT & CHỌN SELECT DÙNG CHUNG */
+.input-select, .input-text {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--mau-vien);
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: var(--nen-trang);
+  outline: none;
+  color: var(--mau-chu-text);
+  transition: border-color 0.2s;
+}
+
+.input-select:focus, .input-text:focus {
+  border-color: var(--mau-chu-dao);
+}
+
+.nhan-input {
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Thẻ "Tại sao chọn NhaTroSV" */
 .the-tinh-nang {
   background-color: var(--nen-trang);
   padding: 30px 20px;
@@ -113,14 +146,32 @@
   color: var(--mau-chu-phu);
 }
 
-/* Thẻ phòng trọ render tự động khớp 100% Ảnh mẫu */
+/* Lưới hiển thị danh sách phòng */
+.luoi-phong {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* Thẻ phòng trọ */
 .card-phong {
   background-color: var(--nen-trang);
-  border: 1px solid #edf2f7;
+  border: 1px solid var(--mau-vien);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+  
+  /* CẬP NHẬT THÊM THUỘC TÍNH DƯỚI ĐÂY */
+  display: block;            /* Biến thẻ a thành khối */
+  text-decoration: none;     /* Bỏ gạch chân mặc định của thẻ liên kết */
+  color: inherit;            /* Kế thừa màu chữ mặc định của hệ thống */
+}
+
+.card-phong:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05);
 }
 
 .card-phong__khung-anh {
@@ -135,104 +186,6 @@
   left: 12px;
   background-color: #00c853;
   color: white;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: bold;
-}
-
-.card-phong__noi-dung {
-  padding: 15px;
-}
-
-.card-phong__dong-dau {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.card-phong__tieu-de {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--mau-chu-text);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card-phong__danh-gia {
-  color: #f59e0b;
-  font-weight: bold;
-  font-size: 13px;
-}
-
-.card-phong__dia-chi {
-  font-size: 12px;
-  color: var(--mau-chu-phu);
-  margin-bottom: 10px;
-}
-
-.card-phong__thong-so {
-  display: flex;
-  gap: 12px;
-  font-size: 12px;
-  color: var(--mau-chu-phu);
-  margin-bottom: 12px;
-}
-
-.card-phong__vach-ngan {
-  border: none;
-  border-top: 1px solid #f1f5f9;
-  margin-bottom: 12px;
-}
-
-.card-phong__dong-gia {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.card-phong__gia {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--mau-chu-dao);
-}
-/* ==================== LƯỚI PHÒNG & THẺ PHÒNG NỔI BẬT ==================== */
-.luoi-phong {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Chia đều 3 cột bằng nhau theo ảnh mẫu */
-  gap: 25px;
-}
-
-.card-phong {
-  background-color: var(--nen-trang);
-  border: 1px solid var(--mau-vien);
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card-phong:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.05);
-}
-
-.card-phong__khung-anh {
-  position: relative;
-  height: 190px;
-  background-color: #cbd5e1;
-}
-
-/* Thẻ thông tin trạng thái phòng (màu xanh lá) */
-.card-phong__nhan {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background-color: #00c853; /* Xanh lá sáng chuẩn thiết kế */
-  color: white;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 11px;
@@ -240,7 +193,6 @@
   z-index: 5;
 }
 
-/* Ảnh minh họa nằm trong thẻ */
 .room-image-placeholder {
   width: 100%;
   height: 100%;
@@ -253,7 +205,6 @@
   font-size: 14px;
 }
 
-/* Phần nội dung thông tin phòng trọ */
 .card-phong__noi-dung {
   padding: 20px;
 }
@@ -321,12 +272,10 @@
 .card-phong__gia {
   font-size: 18px;
   font-weight: 700;
-  color: var(--mau-chu-dao); /* Chữ giá màu xanh dương đậm nổi bật */
+  color: var(--mau-chu-dao);
 }
-/* map */
-/* ==================== ĐỊNH DẠNG SẠCH CÁC KHỐI RENDER TỰ ĐỘNG ==================== */
 
-/* Thông báo trống khi không có kết quả lọc */
+/* Ghim Bản đồ & Popups */
 .thong-bao-trong {
   grid-column: 1 / -1;
   color: var(--mau-chu-phu);
@@ -335,7 +284,6 @@
   font-weight: 500;
 }
 
-/* Khối Popup nổi trên Bản đồ Leaflet */
 .popup-ban-do {
   font-size: 13px;
   min-width: 150px;
@@ -351,7 +299,6 @@
   font-weight: bold;
 }
 
-/* Thẻ hiển thị phòng trọ chi tiết ở góc bản đồ */
 .the-phong-chon__khung {
   padding: 15px;
 }
@@ -414,4 +361,215 @@
 
 .the-phong-chon__link:hover {
   background-color: var(--mau-chu-dao-hover);
+}
+/* ==================== THÀNH PHẦN CHI TIẾT (COMPONENTS) ==================== */
+
+.the-chi-tiet {
+  background-color: var(--nen-trang);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--mau-vien);
+}
+
+.tieu-de-the {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--mau-chu-text);
+  border-left: 4px solid var(--mau-chu-dao);
+  padding-left: 10px;
+}
+
+.khung-anh-placeholder {
+  aspect-ratio: 16/10;
+  background: linear-gradient(135deg, #dbeafe, #d1fae5);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  overflow: hidden;
+}
+
+.khung-anh-phong-that {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.luoi-thong-tin-phu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.hop-thong-tin-phu {
+  background-color: var(--nen-trang);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--mau-vien);
+  text-align: center;
+}
+
+.nhan-thong-tin-phu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--mau-chu-phu);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.gia-tri-thong-tin-phu {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--mau-chu-text);
+}
+
+.dong-chi-phi {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+.dong-chi-phi:last-child {
+  border-bottom: none;
+}
+
+.nhan-chi-phi {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--mau-chu-text);
+}
+
+.gia-tri-chi-phi {
+  font-weight: 600;
+}
+
+.gia-tri-chi-phi--noi-bat {
+  color: var(--mau-chu-dao);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.danh-sach-tien-ich {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.muc-tien-ich {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+#ban-do-chi-tiet {
+  height: 320px;
+  border-radius: 12px;
+  border: 1px solid var(--mau-vien);
+  z-index: 10;
+}
+
+/* Giao diện hộp liên hệ bên phải */
+.the-lien-he {
+  background-color: var(--nen-trang);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid var(--mau-vien);
+  position: sticky;
+  top: 80px;
+}
+
+.hop-gia-chinh {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--mau-vien);
+}
+
+.gia-chinh {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--mau-chu-dao);
+  margin-bottom: 5px;
+}
+
+.thong-tin-chu-tro {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.anh-dai-dien-chu-tro {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #0062ff, #00b341);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nhom-nut-lien-he {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-giao-tiep {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-giao-tiep--phone {
+  background: var(--chuyen-sac-nut);
+  color: white;
+}
+
+.btn-giao-tiep--nhan-tin {
+  background: white;
+  color: var(--mau-chu-dao);
+  border: 2px solid var(--mau-chu-dao);
+}
+
+.btn-giao-tiep--dat-lich {
+  background: white;
+  color: var(--mau-chu-text);
+  border: 1px solid var(--mau-vien);
+}
+
+.hop-luu-y {
+  margin-top: 25px;
+  padding: 15px;
+  background: #fffbeb;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #92400e;
+  line-height: 1.6;
+}
+/* Định dạng ô chọn tệp ảnh đồng bộ với ô nhập chữ */
+input[type="file"].input-text {
+  padding: 10px;
+  background-color: var(--nen-nhap);
+  cursor: pointer;
 }
