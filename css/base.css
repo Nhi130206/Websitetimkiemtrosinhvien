@@ -1,14 +1,13 @@
 :root {
   --mau-chu-dao: #0062ff;
-  --mau-xanh-la: #00b341;
   --mau-chu-text: #1e293b;
   --mau-chu-phu: #718096;
   --nen-nhap: #f8fafc;
   --nen-trang: #ffffff;
-  --mau-vien: #e2e8f0;
-  /* Dải màu chuyển sắc giống mockup */
+  --mau-vien: #cbd5e1;
+  /* Dải màu chuyển sắc chính xác của mockup */
   --chuyen-sac-nut: linear-gradient(to right, #005eff, #00b050);
-  --chuyen-sac-cta: linear-gradient(135deg, #0056b3, #00b080);
+  --chuyen-sac-cta: linear-gradient(135deg, #005eff, #00b080);
 }
 
 * {

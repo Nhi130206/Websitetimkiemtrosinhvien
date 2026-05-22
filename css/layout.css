@@ -8,8 +8,7 @@
 /* Header */
 .dau-trang {
   background-color: var(--nen-trang);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-  border-bottom: 1px solid var(--mau-vien);
+  border-bottom: 1px solid #e2e8f0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -53,7 +52,6 @@
   color: var(--mau-chu-dao);
 }
 
-/* Tab đang hoạt động giống ảnh mẫu (màu xanh dương nhạt) */
 .menu__link.active {
   background-color: #ebf3ff;
   color: var(--mau-chu-dao);

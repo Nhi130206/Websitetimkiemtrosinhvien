@@ -1,7 +1,4 @@
-/* Nhập các module CSS theo đúng thứ tự ưu tiên */
 @import url('base.css');
 @import url('layout.css');
 @import url('components.css');
-@import url('pages.css');
-
-/* (Tùy chọn) Viết các tùy biến nhanh khác của toàn trang web tại đây nếu có */
+@import url('pages.css'); 
