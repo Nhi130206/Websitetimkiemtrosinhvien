@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản đồ tìm trọ - NhaTroSV</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- LeafletJS (Bản đồ chạy client-side miễn phí không cần server) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    
+    <!-- CSS liên kết theo đúng cấu trúc của bạn -->
+    <link rel="stylesheet" href="css/main.css">
+ 
+    
+    <!-- jQuery và Thư viện Bản đồ -->
+    <script src="js/jquery-4.0.0.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- JS xử lý dữ liệu -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <!-- ==================== HEADER ==================== -->
+    <header class="dau-trang">
+        <div class="khung-chua">
+            <nav class="thanh-dieu-huong">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span>🏠 NhaTroSV</span>
+                </a>
+                
+                <!-- Menu -->
+                <ul class="menu">
+                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+                    <li><a href="ban-do.html" class="menu__link active">Bản đồ</a></li>
+                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+                    <li><a href="yeu-thich.html" class="menu__link">Yêu thích</a></li>
+                </ul>
+                
+                <!-- Actions -->
+                <div class="hanh-dong">
+                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== KHU VỰC BẢN ĐỒ ==================== -->
+    <div class="trang-ban-do">
+        <div class="khung-ban-do">
+            <!-- Hộp điều khiển nổi trên bản đồ -->
+            <div class="hop-dieu-khien-ban-do">
+                <div class="dau-ban-do">
+                    <div>
+                        <div class="tieu-de-ban-do">Tìm thấy <span id="so-luong-ban-do">0</span> phòng trọ</div>
+                        <div class="chu-thich-ban-do">Khu vực quanh Đại học Tây Nguyên</div>
+                    </div>
+                    <div class="chuyen-che-do">
+                        <button class="nut-che-do active">🗺️ Bản đồ</button>
+                        <button class="nut-che-do" onclick="window.location.href='tim-kiem.html'">📋 Danh sách</button>
+                    </div>
+                </div>
+
+                <div class="bo-loc-ban-do">
+                    <select id="loc-duong-ban-do" class="input-select">
+                        <option value="all">Tất cả các đường</option>
+                        <option value="Y Wang">Đường Y Wang</option>
+                        <option value="Lê Duẩn">Đường Lê Duẩn</option>
+                        <option value="Giải Phóng">Đường Giải Phóng</option>
+                        <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
+                        <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Div chứa bản đồ thực tế -->
+            <div id="ban-do-chinh"></div>
+
+            <!-- Thẻ hiển thị nhanh thông tin phòng trọ khi nhấn vào ghim bản đồ -->
+            <div class="the-phong-chon" id="the-phong-chon" style="display: none;">
+                <button class="nut-dong-the" id="nut-dong-the">×</button>
+                <div id="noi-dung-phong-chon"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
