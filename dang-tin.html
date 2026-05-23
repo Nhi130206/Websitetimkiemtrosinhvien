@@ -2,7 +2,6 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng tin cho thuê phòng trọ - NhaTroSV</title>
     
     <!-- Fonts -->
@@ -116,7 +115,30 @@
                         <p>Thông tin chi phí thuê minh bạch</p>
                     </div>
                 </div>
-
+                <!-- KHỐI 2B: CHI PHÍ DỊCH VỤ (TÙY CHỌN) -->
+            <div class="dau-khung-nhap" style="margin-top: 40px;">
+                <span class="emoji-khoi">⚡</span>
+                <div>
+                    <h3>Chi phí dịch vụ (tùy chọn)</h3>
+                    <p>Để trống nếu không thu thêm</p>
+                </div>
+            </div>
+            <div class="hai-cot">
+                <div class="nhom-truong">
+                    <label class="nhan-form">Tiền điện (đ/kWh)</label>
+                    <input type="number" id="dang-gia-dien" class="input-text" placeholder="VD: 3500">
+                </div>
+                <div class="nhom-truong">
+                    <label class="nhan-form">Tiền nước (đ/tháng)</label>
+                    <input type="number" id="dang-gia-nuoc" class="input-text" placeholder="VD: 100000">
+                </div>
+            </div>
+            <div class="hai-cot">
+                <div class="nhom-truong">
+                    <label class="nhan-form">Tiền wifi (đ/tháng)</label>
+                    <input type="number" id="dang-gia-wifi" class="input-text" placeholder="VD: 100000">
+                </div>
+            </div>
                 <div class="hai-cot">
                     <div class="nhom-truong">
                         <label class="nhan-form">Giá thuê (đồng/tháng) *</label>
@@ -165,5 +187,10 @@
             </form>
         </div>
     </div>
+    <footer class="chan-trang">
+        <div class="khung-chua">
+            <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>

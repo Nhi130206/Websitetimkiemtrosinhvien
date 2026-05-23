@@ -13,7 +13,29 @@
     <script src="js/main.js"></script>
 </head>
 <body>
-    <header class="dau-trang">...</header>
+    <header class="dau-trang">
+        <div class="khung-chua">
+            <nav class="thanh-dieu-huong">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span>🏠 NhaTroSV</span>
+                </a>
+                
+                <!-- Menu -->
+                <ul class="menu">
+                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+                </ul>
+                
+                <!-- Actions (Sẽ được JS tự động thay đổi khi đã đăng nhập) -->
+                <div class="hanh-dong" id="vung-hanh-dong">
+                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+                    <a href="dang-nhap.html" class="btn btn--login active">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
+    </header>
     <div class="trang-chi-tiet" id="chi-tiet-trang">
         <div class="khung-chua">
             <div class="duong-dan-trang">
@@ -61,7 +83,6 @@
                             <div class="dong-chi-phi"><div class="nhan-chi-phi">⚡ Điện (ước tính 100 kWh)</div><div class="gia-tri-chi-phi" id="chiphi-dien">0đ</div></div>
                             <div class="dong-chi-phi"><div class="nhan-chi-phi">💧 Nước định mức</div><div class="gia-tri-chi-phi" id="chiphi-nuoc">0đ</div></div>
                             <div class="dong-chi-phi"><div class="nhan-chi-phi">📶 Wifi tốc độ cao</div><div class="gia-tri-chi-phi" id="chiphi-wifi">0đ</div></div>
-                            <div class="dong-chi-phi"><div class="nhan-chi-phi">🏍️ Gửi xe máy</div><div class="gia-tri-chi-phi" id="chiphi-gui-xe">0đ</div></div>
                             <div class="dong-chi-phi" style="border-top: 2px solid #e5e7eb; padding-top: 20px; margin-top: 10px;">
                                 <div class="nhan-chi-phi" style="font-weight: 700; font-size: 16px;">Tổng ước tính/tháng</div>
                                 <div class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat" style="font-size: 22px;" id="chiphi-tong">0đ</div>
