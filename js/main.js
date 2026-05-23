@@ -1,4 +1,4 @@
-// Ép ẩn khung đăng ký ngay khi vừa dựng xong khung HTML để tránh hiển thị chồng chéo
+// Ép ẩn khung đăng ký ngay khi vừa dựng xong khung HTML
 document.addEventListener("DOMContentLoaded", function() {
   const khungDangKy = document.getElementById("khung-dang-ky");
   if (khungDangKy) {
@@ -8,16 +8,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 $(document).ready(function() {
 
-  // Lấy dữ liệu phòng trọ dùng chung từ localStorage
-  const danhSachPhong = JSON.parse(localStorage.getItem("rooms")) || [];
+  // HÀM LẤY DỮ LIỆU PHÒNG TRỌ MỚI NHẤT TỪ LOCALSTORAGE (THAY CHO BIẾN CỐ ĐỊNH)
+  function layDanhSachPhong() {
+    return JSON.parse(localStorage.getItem("rooms")) || [];
+  }
 
   // Tự động kiểm tra trạng thái đăng nhập để cập nhật Icon người dùng ở Header
   capNhatTrangThaiHeader();
 
-
   // ==================== KHU VỰC 1: XỬ LÝ TRANG CHỦ (index.html) ====================
   if ($('#danh-sach-tro').length > 0) {
-    hienThiDanhSachPhong(danhSachPhong.slice(0, 3), '#danh-sach-tro');
+    let dsPhong = layDanhSachPhong();
+    hienThiDanhSachPhong(dsPhong.slice(0), '#danh-sach-tro');
   }
 
   $('#btn-tim').on('click', function() {
@@ -26,21 +28,16 @@ $(document).ready(function() {
     window.location.href = "tim-kiem.html";
   });
 
-
   // ==================== KHU VỰC 2: XỬ LÝ TRANG BỘ LỌC TÌM KIẾM (tim-kiem.html) ====================
   if ($('#danh-sach-tim-kiem').length > 0) {
-    
     const duongTuTrangChu = sessionStorage.getItem("duongChuyenTiep");
     if (duongTuTrangChu) {
       $('#chon-duong').val(duongTuTrangChu);
       sessionStorage.removeItem("duongChuyenTiep");
     }
-
     thucHienLocPhong();
-
     $('#chon-duong, #loc-gia-thap, #loc-gia-cao, #sap-xep').on('change keyup', thucHienLocPhong);
     $('.loc-loai-phong, .loc-tien-ich').on('change', thucHienLocPhong);
-
     $('#nut-dat-lai').on('click', function() {
       $('#chon-duong').val('all');
       $('#loc-gia-thap').val('0');
@@ -52,14 +49,11 @@ $(document).ready(function() {
     });
   }
 
-
   // ==================== KHU VỰC 3: XỬ LÝ TRANG BẢN ĐỒ (ban-do.html) ====================
   if ($('#ban-do-chinh').length > 0) {
     let banDo;
     let danhSachGhim = [];
-
     banDo = L.map('ban-do-chinh').setView([12.6515, 108.0581], 15);
-    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(banDo);
@@ -67,10 +61,8 @@ $(document).ready(function() {
     function capNhatGhimBanDo(danhSachLoc) {
       danhSachGhim.forEach(ghim => banDo.removeLayer(ghim));
       danhSachGhim = [];
-
       danhSachLoc.forEach(phong => {
         const ghim = L.marker([phong.lat, phong.lng]).addTo(banDo);
-        
         ghim.bindPopup(`
           <div class="popup-ban-do">
             <strong class="popup-ban-do__tieu-de">${phong.title}</strong><br>
@@ -78,21 +70,17 @@ $(document).ready(function() {
             Đường: ${phong.street}
           </div>
         `);
-
         ghim.on('click', function() {
           hienThiThePhongChon(phong);
         });
-
         danhSachGhim.push(ghim);
       });
-
       $('#so-luong-ban-do').text(danhSachLoc.length);
     }
 
     function hienThiThePhongChon(phong) {
       const theChiTiet = $('#the-phong-chon');
       const noiDung = $('#noi-dung-phong-chon');
-
       noiDung.html(`
         <div class="the-phong-chon__khung">
           <span class="the-phong-chon__nhan">${phong.tag}</span>
@@ -106,7 +94,6 @@ $(document).ready(function() {
           <a href="chi-tiet.html?id=${phong.id}" class="the-phong-chon__link">Xem chi tiết</a>
         </div>
       `);
-
       theChiTiet.fadeIn(200);
     }
 
@@ -116,35 +103,25 @@ $(document).ready(function() {
 
     function thucHienLocBanDo() {
       const duongLoc = $('#loc-duong-ban-do').val();
-      let danhSachSauLoc = danhSachPhong;
-
-      if (duongLoc !== 'all') {
-        danhSachSauLoc = danhSachPhong.filter(p => p.street === duongLoc);
-      }
-
+      let danhSachPhong = layDanhSachPhong();
+      let danhSachSauLoc = duongLoc !== 'all' ? danhSachPhong.filter(p => p.street === duongLoc) : danhSachPhong;
       capNhatGhimBanDo(danhSachSauLoc);
       $('#the-phong-chon').fadeOut(100);
     }
 
     $('#loc-duong-ban-do').on('change', thucHienLocBanDo);
-    capNhatGhimBanDo(danhSachPhong);
+    capNhatGhimBanDo(layDanhSachPhong());
   }
-
 
   // ==================== KHU VỰC 4: XỬ LÝ TRANG ĐĂNG TIN ====================
   if ($('#form-dang-tin').length > 0) {
-    
-    // Kiểm tra quyền chủ trọ
     const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
     if (!currentUser || currentUser.role !== 'landlord') {
       alert("Vui lòng đăng nhập tài khoản CHỦ TRỌ để thực hiện chức năng đăng tin!");
       window.location.href = "dang-nhap.html";
       return;
     }
-
-    let hinhAnhBase64 = ""; // Biến chứa chuỗi ảnh bắt buộc
-
-    // Trình đọc ảnh từ thiết bị
+    let hinhAnhBase64 = "";
     $('#dang-anh').on('change', function() {
       const file = this.files[0];
       if (file) {
@@ -155,17 +132,12 @@ $(document).ready(function() {
         reader.readAsDataURL(file);
       }
     });
-
-    // Sự kiện nộp Form Đăng tin duy nhất
     $('#form-dang-tin').on('submit', function(e) {
       e.preventDefault();
-
-      // Kiểm tra bắt buộc tải ảnh thực tế lên trước
       if (!hinhAnhBase64) {
         alert("Vui lòng tải lên một hình ảnh thực tế của phòng trọ trước khi Đăng tin!");
         return;
       }
-
       const tieuDe = $('#dang-tieu-de').val().trim();
       const duong = $('#dang-duong').val();
       const diaChi = $('#dang-dia-chi').val().trim();
@@ -174,18 +146,12 @@ $(document).ready(function() {
       const gia = parseInt($('#dang-gia').val());
       const coc = parseInt($('#dang-coc').val());
       const soLuongPhong = $('#dang-so-luong').val().trim();
-
-      const tienIchDaChon = $('.tien-ich-dang:checked').map(function() {
-        return $(this).val();
-      }).get();
-
+      const tienIchDaChon = $('.tien-ich-dang:checked').map(function() { return $(this).val(); }).get();
       const offsetLat = (Math.random() - 0.5) * 0.01;
       const offsetLng = (Math.random() - 0.5) * 0.01;
       const latMoi = 12.6515 + offsetLat;
       const lngMoi = 108.0581 + offsetLng;
-
-      const danhSachPhongHienTai = JSON.parse(localStorage.getItem("rooms")) || [];
-
+      const danhSachPhongHienTai = layDanhSachPhong();
       const phongTroMoi = {
         id: Date.now(),
         title: tieuDe,
@@ -198,74 +164,60 @@ $(document).ready(function() {
         rating: 5.0,
         tag: `Còn ${soLuongPhong} phòng`,
         amenities: tienIchDaChon,
-        image: hinhAnhBase64, // Lưu chuỗi ảnh thật mã hóa Base64
+        image: hinhAnhBase64,
         lat: latMoi,
         lng: lngMoi,
-        landlordId: currentUser.id
+        landlordId: currentUser.id,
+        createdAt: Date.now()
       };
-
       danhSachPhongHienTai.push(phongTroMoi);
       localStorage.setItem("rooms", JSON.stringify(danhSachPhongHienTai));
-
       alert("Chúc mừng! Bạn đã đăng tin phòng trọ thành công.");
-      window.location.href = "tim-kiem.html"; // Chuyển sang trang lọc để xem thành phẩm ngay
+      window.location.href = "tim-kiem.html";
     });
   }
 
-
-  // =========================================================================
-  // KHU VỰC 5: XỬ LÝ ĐĂNG NHẬP & ĐĂNG KÝ (dang-nhap.html) 
-  // =========================================================================
+  // ==================== KHU VỰC 5: XỬ LÝ ĐĂNG NHẬP & ĐĂNG KÝ ====================
   if ($('#khung-dang-nhap').length > 0) {
-    
-    // Đảm bảo ẩn khung Đăng ký khi vừa vào trang
     $('#khung-dang-ky').hide();
     $('#khung-dang-nhap').show();
-
-    // Click chuyển sang form Đăng ký
     $('#link-sang-dang-ky').on('click', function(e) {
       e.preventDefault();
       $('#khung-dang-nhap').hide();
       $('#khung-dang-ky').fadeIn(200);
     });
-
-    // Click chuyển về form Đăng nhập
     $('#link-sang-dang-nhap').on('click', function(e) {
       e.preventDefault();
       $('#khung-dang-ky').hide();
       $('#khung-dang-nhap').fadeIn(200);
     });
-
-    // --- XỬ LÝ ĐĂNG KÝ TÀI KHOẢN MỚI ---
     $('#form-dang-ky-truc-tiep').on('submit', function(e) {
       e.preventDefault();
-
       const ten = $('#ky-ten').val().trim();
       const email = $('#ky-email').val().trim();
       const soDt = $('#ky-sodt').val().trim();
       const matKhau = $('#ky-mat-khau').val().trim();
       const vaiTro = $('#ky-vai-tro').val();
-
-      // KHỐI BẢO VỆ CHỐNG CRASH: Kiểm tra và đọc dữ liệu localStorage an toàn tuyệt đối
+      if (!ten || !email || !soDt || !matKhau) {
+        alert("Vui lòng điền đầy đủ thông tin!");
+        return;
+      }
+      if (matKhau.length < 4) {
+        alert("Mật khẩu phải có ít nhất 4 ký tự");
+        return;
+      }
       let danhSachUser = [];
       try {
         const duLieuGoc = localStorage.getItem("users");
         danhSachUser = duLieuGoc ? JSON.parse(duLieuGoc) : [];
-        if (!Array.isArray(danhSachUser)) {
-          danhSachUser = [];
-        }
+        if (!Array.isArray(danhSachUser)) danhSachUser = [];
       } catch (err) {
-        danhSachUser = []; // Nếu dữ liệu cũ bị lỗi hỏng, tự động đặt lại mảng rỗng để chống crash
+        danhSachUser = [];
       }
-
-      // Kiểm tra trùng lặp Email
-      const checkTrung = danhSachUser.find(u => u.email === email);
-      if (checkTrung) {
+      if (danhSachUser.find(u => u.email === email)) {
         alert("Email này đã được sử dụng! Vui lòng chọn email khác.");
         return;
       }
-
-      // Đóng gói lưu trữ tài khoản mới
       const userMoi = {
         id: Date.now(),
         name: ten,
@@ -274,289 +226,222 @@ $(document).ready(function() {
         password: matKhau,
         role: vaiTro
       };
-
       danhSachUser.push(userMoi);
       localStorage.setItem("users", JSON.stringify(danhSachUser));
-
       alert("Đăng ký tài khoản thành công! Bạn có thể đăng nhập ngay bây giờ.");
-      
-      // Reset form đăng ký sạch sẽ
       $('#form-dang-ky-truc-tiep')[0].reset();
-      
-      // SỬA LỖI: Ẩn/Hiện trực tiếp một cách tường minh, không dùng lệnh click mô phỏng ảo nữa
       $('#khung-dang-ky').hide();
       $('#khung-dang-nhap').fadeIn(200);
     });
-
-    // --- XỬ LÝ ĐĂNG NHẬP ---
     $('#form-dang-nhap-truc-tiep').on('submit', function(e) {
       e.preventDefault();
-
       const email = $('#nhap-email').val().trim();
       const matKhau = $('#nhap-mat-khau').val().trim();
-
       let danhSachUser = [];
       try {
         const duLieuGoc = localStorage.getItem("users");
         danhSachUser = duLieuGoc ? JSON.parse(duLieuGoc) : [];
-        if (!Array.isArray(danhSachUser)) {
-          danhSachUser = [];
-        }
+        if (!Array.isArray(danhSachUser)) danhSachUser = [];
       } catch (err) {
         danhSachUser = [];
       }
-
-      // Tìm kiếm xem tài khoản khớp thông tin không
       const matchedUser = danhSachUser.find(u => u.email === email && u.password === matKhau);
-
       if (matchedUser) {
         alert("Đăng nhập thành công!");
         sessionStorage.setItem("currentUser", JSON.stringify(matchedUser));
-        window.location.href = "index.html"; // Trở về trang chủ
+        window.location.href = "index.html";
       } else {
         alert("Sai tài khoản hoặc mật khẩu! Vui lòng thử lại.");
       }
     });
   }
-  // ==================== KHU VỰC 6: CÁC HÀM TRỢ GIÚP DÙNG CHUNG ====================
 
+  // ==================== KHU VỰC 6: HÀM LỌC VÀ HIỂN THỊ ====================
   function thucHienLocPhong() {
     const duongLoc = $('#chon-duong').val();
     const giaThap = parseInt($('#loc-gia-thap').val()) || 0;
-    const giaCao = parseInt($('#loc-gia-cao').val()) || 99999999;
+    const giaCao = parseInt($('#loc-gia-cao').val()) || 100000000000;
     const sapXep = $('#sap-xep').val();
-
-    const loaiPhongDaChon = $('.loc-loai-phong:checked').map(function() {
-      return $(this).val();
-    }).get();
-
-    const tienIchDaChon = $('.loc-tien-ich:checked').map(function() {
-      return $(this).val();
-    }).get();
-
+    const loaiPhongDaChon = $('.loc-loai-phong:checked').map(function() { return $(this).val(); }).get();
+    const tienIchDaChon = $('.loc-tien-ich:checked').map(function() { return $(this).val(); }).get();
+    let danhSachPhong = layDanhSachPhong(); // LẤY DỮ LIỆU MỚI MỖI LẦN LỌC
     let danhSachSauLoc = danhSachPhong.filter(phong => {
       if (duongLoc !== 'all' && phong.street !== duongLoc) return false;
       if (phong.price < giaThap || phong.price > giaCao) return false;
       if (loaiPhongDaChon.length > 0 && !loaiPhongDaChon.includes(phong.type)) return false;
-
       if (tienIchDaChon.length > 0) {
         const checkTienIch = tienIchDaChon.every(ti => phong.amenities.includes(ti));
         if (!checkTienIch) return false;
       }
-
       return true;
     });
-
-    if (sapXep === 'gia-tang') {
-      danhSachSauLoc.sort((a, b) => a.price - b.price);
-    } else if (sapXep === 'gia-giam') {
-      danhSachSauLoc.sort((a, b) => b.price - a.price);
-    }
-
+    if (sapXep === 'gia-tang') danhSachSauLoc.sort((a, b) => a.price - b.price);
+    else if (sapXep === 'gia-giam') danhSachSauLoc.sort((a, b) => b.price - a.price);
     hienThiDanhSachPhong(danhSachSauLoc, '#danh-sach-tim-kiem');
     $('#so-luong-phong').text(`Tìm thấy ${danhSachSauLoc.length} phòng trọ`);
   }
 
-  // Thay đổi phương thức hienThiDanhSachPhong trong file js/main.js để xử lý ảnh hiển thị chuyên nghiệp hơn
-function hienThiDanhSachPhong(danhSach, idTheChua) {
-  const theChua = $(idTheChua);
-  theChua.empty();
-
-  if (danhSach.length === 0) {
-    theChua.html('<p class="thong-bao-trong">Không tìm thấy phòng trọ nào phù hợp.</p>');
-    return;
+  function hienThiDanhSachPhong(danhSach, idTheChua) {
+    const theChua = $(idTheChua);
+    theChua.empty();
+    if (danhSach.length === 0) {
+      theChua.html('<p class="thong-bao-trong">Không tìm thấy phòng trọ nào phù hợp.</p>');
+      return;
+    }
+    danhSach.forEach(phong => {
+      const khungAnhHTML = phong.image 
+        ? `<img src="${phong.image}" class="card-phong__anh-that" style="width:100%; height:100%; object-fit:cover;">`
+        : `<div class="room-image-placeholder">Ảnh phòng trọ mẫu</div>`;
+      const thePhongHTML = `
+        <a href="chi-tiet.html?id=${phong.id}" class="card-phong">
+          <div class="card-phong__khung-anh" style="position:relative; height:190px; background-color:#cbd5e1; overflow:hidden;">
+            <div class="card-phong__nhan">${phong.tag}</div>
+            ${khungAnhHTML}
+          </div>
+          <div class="card-phong__noi-dung">
+            <div class="card-phong__dong-dau">
+              <h3 class="card-phong__tieu-de">${phong.title}</h3>
+              <span class="card-phong__danh-gia">★ ${phong.rating}</span>
+            </div>
+            <p class="card-phong__dia-chi">📍 ${phong.address}</p>
+            <div class="card-phong__thong-so">
+              <span>📐 ${phong.area} m²</span>
+              <span>🚪 Phòng trọ</span>
+            </div>
+            <hr class="card-phong__vach-ngan">
+            <div class="card-phong__dong-gia">
+              <span class="card-phong__nhan-gia">Giá thuê:</span>
+              <strong class="card-phong__gia">${phong.price.toLocaleString()}đ</strong>
+            </div>
+          </div>
+        </a>
+      `;
+      theChua.append(thePhongHTML);
+    });
   }
 
-  danhSach.forEach(phong => {
-    // Nếu là link ảnh mockup từ Unsplash hoặc ảnh base64 do người dùng tải lên
-    const khungAnhHTML = phong.image 
-      ? `<img src="${phong.image}" class="card-phong__anh-that" style="width:100%; height:100%; object-fit:cover;">`
-      : `<div class="room-image-placeholder">Ảnh phòng trọ mẫu</div>`;
-
-    const thePhongHTML = `
-      <a href="chi-tiet.html?id=${phong.id}" class="card-phong">
-        <div class="card-phong__khung-anh" style="position:relative; height:190px; background-color:#cbd5e1; overflow:hidden;">
-          <div class="card-phong__nhan">${phong.tag}</div>
-          ${khungAnhHTML}
-        </div>
-        <div class="card-phong__noi-dung">
-          <div class="card-phong__dong-dau">
-            <h3 class="card-phong__tieu-de">${phong.title}</h3>
-            <span class="card-phong__danh-gia">★ ${phong.rating}</span>
-          </div>
-          <p class="card-phong__dia-chi">📍 ${phong.address}</p>
-          <div class="card-phong__thong-so">
-            <span>📐 ${phong.area} m²</span>
-            <span>🚪 Phòng trọ</span>
-          </div>
-          <hr class="card-phong__vach-ngan">
-          <div class="card-phong__dong-gia">
-            <span class="card-phong__nhan-gia">Giá thuê:</span>
-            <strong class="card-phong__gia">${phong.price.toLocaleString()}đ</strong>
-          </div>
-        </div>
-      </a>
-    `;
-    theChua.append(thePhongHTML);
-  });
-}
-
-  // ==================== KHU VỰC 7: XỬ LÝ TRANG CHI TIẾT PHÒNG TRỌ (chi-tiet.html) ====================
+  // ==================== KHU VỰC 7: XỬ LÝ TRANG CHI TIẾT PHÒNG TRỌ ====================
   if ($('#chi-tiet-trang').length > 0) {
-    
     function layThamSoIdURL(name) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(name);
     }
-
     const idPhong = layThamSoIdURL('id');
-    const danhSachPhongTuStorage = JSON.parse(localStorage.getItem("rooms")) || [];
+    const danhSachPhongTuStorage = layDanhSachPhong();
     const phongChiTiet = danhSachPhongTuStorage.find(p => String(p.id) === String(idPhong));
-
     if (!phongChiTiet) {
       alert('Không tìm thấy phòng trọ này! Quay lại trang tìm kiếm.');
       window.location.href = 'tim-kiem.html';
     } else {
       napGiaoDienChiTiet(phongChiTiet);
     }
+  function napGiaoDienChiTiet(phong) {
+    // Cập nhật tiêu đề trang và breadcrumb
+    $('#duong-dan-tieu-de').text(phong.title);
+    document.title = `${phong.title} - NhaTroSV`;
 
-    function napGiaoDienChiTiet(phong) {
-      $('#duong-dan-tieu-de').text(phong.title);
-      document.title = `${phong.title} - NhaTroSV`;
+    // Phần đầu: tên, địa chỉ, rating, tag
+    $('#chi-tiet-ten').text(phong.title);
+    $('#chi-tiet-dia-chi').text(`📍 ${phong.address}`);
+    $('#chi-tiet-rating').html(`★ ${phong.rating} (24 đánh giá)`);
+    $('#chi-tiet-tag').text(phong.tag);
 
-      $('#dau-chi-tiet').html(`
-        <h1 class="tieu-de-chi-tiet">${phong.title}</h1>
-        <div class="thong-tin-phu-chi-tiet">
-          <div>📍 ${phong.address}</div>
-          <div>🏫 Ea Tam, cách Đại học Tây Nguyên 0.5 km</div>
-          <div style="color: #fbbf24;">★ ${phong.rating} (24 đánh giá)</div>
-        </div>
-        <span class="the-phong-chon__nhan">${phong.tag}</span>
-      `);
+    // Ảnh
+    if (phong.image) {
+        $('#chi-tiet-anh').attr('src', phong.image).show();
+        $('#khung-anh-phong .room-image-placeholder').hide();
+    } else {
+        $('#chi-tiet-anh').hide();
+        $('#khung-anh-phong .room-image-placeholder').show();
+    }
 
-      // Ưu tiên hiển thị ảnh thật Base64 tải lên nếu có
-      const khungAnhTrangChiTietHTML = phong.image 
-        ? `<img src="${phong.image}" class="khung-anh-phong-that">`
-        : `<div class="room-image-placeholder">Ảnh phòng trọ minh họa</div>`;
+    // Lưới thông số
+    $('#thongso-dien-tich').text(`${phong.area} m²`);
+    let loaiText = phong.type === 'single' ? 'Đơn' : (phong.type === 'double' ? 'Đôi' : 'KTX');
+    $('#thongso-loai').text(loaiText);
+    $('#thongso-rating').text(`${phong.rating}/5`);
 
-      $('#khung-anh-phong').html(khungAnhTrangChiTietHTML);
+    // Chi phí (tính toán)
+    let tienDien = 3500 * 100;
+    let tienNuoc = 100000;
+    let tienWifi = 100000;
+    let tienGuiXe = 150000;
+    let tong = phong.price + (phong.deposit / 12) + tienDien + tienNuoc + tienWifi + tienGuiXe;
+    $('#chiphi-thue').text(`${phong.price.toLocaleString()}đ`);
+    $('#chiphi-coc').text(`${phong.deposit.toLocaleString()}đ`);
+    $('#chiphi-dien').text(`${tienDien.toLocaleString()}đ`);
+    $('#chiphi-nuoc').text(`${tienNuoc.toLocaleString()}đ`);
+    $('#chiphi-wifi').text(`${tienWifi.toLocaleString()}đ`);
+    $('#chiphi-gui-xe').text(`${tienGuiXe.toLocaleString()}đ`);
+    $('#chiphi-tong').text(`${Math.round(tong).toLocaleString()}đ`);
 
-      $('#luoi-thong-tin-phu').html(`
-        <div class="hop-thong-tin-phu">
-          <div class="nhan-thong-tin-phu">📐 Diện tích</div>
-          <div class="gia-tri-thong-tin-phu">${phong.area} m²</div>
-        </div>
-        <div class="hop-thong-tin-phu">
-          <div class="nhan-thong-tin-phu">🚪 Loại phòng</div>
-          <div class="gia-tri-thong-tin-phu">${phong.type === 'single' ? 'Đơn' : phong.type === 'double' ? 'Đôi' : 'KTX'}</div>
-        </div>
-        <div class="hop-thong-tin-phu">
-          <div class="nhan-thong-tin-phu">★ Đánh giá</div>
-          <div class="gia-tri-thong-tin-phu">${phong.rating}/5</div>
-        </div>
-      `);
+    // Tiện ích
+    $('#tienich-wifi').text(phong.amenities.includes('wifi') ? '✔️ Wifi miễn phí' : '❌ Không có Wifi');
+    $('#tienich-gac').text(phong.amenities.includes('gac_lung') ? '✔️ Có gác lửng' : '❌ Không gác lửng');
+    $('#tienich-maygiat').text(phong.amenities.includes('may_giat') ? '✔️ Có máy giặt chung' : '❌ Không máy giặt');
+    // Cửa sổ thoáng mát là mặc định, giữ nguyên
 
-      const tienDienUocTinh = 3500 * 100; 
-      const tongUocTinhThang = phong.price + (phong.deposit / 12) + tienDienUocTinh + 100000 + 100000 + 150000;
-
-      $('#bang-chi-phi').html(`
-        <div class="dong-chi-phi">
-          <div class="nhan-chi-phi">📅 Tiền thuê hàng tháng</div>
-          <div class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat">${phong.price.toLocaleString()}đ</div>
-        </div>
-        <div class="dong-chi-phi">
-          <div class="nhan-chi-phi">📅 Tiền cọc (1 tháng)</div>
-          <div class="gia-tri-chi-phi">${phong.deposit.toLocaleString()}đ</div>
-        </div>
-        <div class="dong-chi-phi">
-          <div class="nhan-chi-phi">⚡ Điện (ước tính 100 kWh)</div>
-          <div class="gia-tri-chi-phi">${tienDienUocTinh.toLocaleString()}đ</div>
-        </div>
-        <div class="dong-chi-phi">
-          <div class="nhan-chi-phi">💧 Nước định mức</div>
-          <div class="gia-tri-chi-phi">100.000đ</div>
-        </div>
-        <div class="dong-chi-phi">
-          <div class="nhan-chi-phi">📶 Wifi tốc độ cao</div>
-          <div class="gia-tri-chi-phi">100.000đ</div>
-        </div>
-        <div class="dong-chi-phi">
-          <div class="nhan-chi-phi">🏍️ Gửi xe máy</div>
-          <div class="gia-tri-chi-phi">150.000đ</div>
-        </div>
-        <div class="dong-chi-phi" style="border-top: 2px solid #e5e7eb; padding-top: 20px; margin-top: 10px;">
-          <div class="nhan-chi-phi" style="font-weight: 700; font-size: 16px;">Tổng ước tính/tháng</div>
-          <div class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat" style="font-size: 22px;">${tongUocTinhThang.toLocaleString()}đ</div>
-        </div>
-      `);
-
-      const checkWifi = phong.amenities.includes('wifi') ? '✔️ Wifi miễn phí' : '❌ Không có Wifi';
-      const checkGac = phong.amenities.includes('gac_lung') ? '✔️ Có gác lửng' : '❌ Không gác lửng';
-      const checkMayGiat = phong.amenities.includes('may_giat') ? '✔️ Có máy giặt chung' : '❌ Không máy giặt';
-
-      $('#danh-sach-tien-ich').html(`
-        <div class="muc-tien-ich">${checkWifi}</div>
-        <div class="muc-tien-ich">${checkGac}</div>
-        <div class="muc-tien-ich">${checkMayGiat}</div>
-        <div class="muc-tien-ich">✔️ Cửa sổ thoáng mát</div>
-      `);
-
-      $('#the-lien-he').html(`
-        <div class="hop-gia-chinh">
-          <div class="gia-chinh">${phong.price.toLocaleString()}đ</div>
-          <p>/ tháng</p>
-        </div>
-        <div class="thong-tin-chu-tro">
-          <div class="anh-dai-dien-chu-tro">👤</div>
-          <div>
-            <div style="font-weight: 700;">Chị Mai (Chủ trọ)</div>
-            <div style="font-size: 12px; color: #00c853;">✔️ Đã xác thực thông tin</div>
-          </div>
-        </div>
-        <div class="nhom-nut-lien-he">
-          <button class="btn-giao-tiep btn-giao-tiep--phone" onclick="alert('Số điện thoại: 0901234567')">📞 Gọi điện thoại</button>
-          <button class="btn-giao-tiep btn-giao-tiep--nhan-tin" onclick="alert('Hộp thư đang được kết nối!')">✉️ Nhắn tin nhanh</button>
-          <button class="btn-giao-tiep btn-giao-tiep--dat-lich" onclick="alert('Đã đặt lịch hẹn xem phòng!')">📅 Đặt lịch xem phòng</button>
-        </div>
-        <div class="hop-luu-y">
-          💡 <strong>Lưu ý quan trọng:</strong> Luôn đi xem phòng trực tiếp trước khi giao tiền đặt cọc để tránh bị lừa đảo mạng.
-        </div>
-      `);
-
-      const mapCon = L.map('ban-do-chi-tiet').setView([phong.lat, phong.lng], 15);
+    // Thông tin liên hệ (cập nhật giá, tên, số điện thoại)
+    $('#lien-he-gia').text(`${phong.price.toLocaleString()}đ`);
+    let landlordName = "Chủ trọ";
+    let landlordPhone = "0901234567";
+    if (phong.landlordId) {
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let landlord = users.find(u => u.id === phong.landlordId);
+        if (landlord) {
+            landlordName = landlord.name || "Chủ trọ";
+            landlordPhone = landlord.phone || "0901234567";
+        }
+    }
+    $('#lien-he-ten').text(landlordName);
+    $('#lien-he-btn-goi').off('click').on('click', () => alert(`Số điện thoại: ${landlordPhone}`));
+    $('#lien-he-btn-nhan').off('click').on('click', () => alert('Hộp thư đang được kết nối!'));
+    $('#lien-he-btn-datlich').off('click').on('click', () => alert('Đã đặt lịch hẹn xem phòng!'));
+ 
+     const mapCon = L.map('ban-do-chi-tiet').setView([phong.lat, phong.lng], 15);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
       }).addTo(mapCon);
       L.marker([phong.lat, phong.lng]).addTo(mapCon).bindPopup(phong.title);
     }
   }
+//     // Bản đồ
+//     if (window.chiTietMap) window.chiTietMap.remove();
+//     window.chiTietMap = L.map('ban-do-chi-tiet').setView([phong.lat, phong.lng], 15);
+//     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//         attribution: '© OpenStreetMap contributors'
+//     }).addTo(window.chiTietMap);
+//     L.marker([phong.long, phong.lat]).addTo(window.chiTietMap).bindPopup(phong.title);
+// }
 
+  // ==================== HÀM CẬP NHẬT HEADER (GIỮ NGUYÊN CÁCH HOẠT ĐỘNG CŨ) ====================
   function capNhatTrangThaiHeader() {
     const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
     const vungHanhDong = $('#vung-hanh-dong');
-
+    if (vungHanhDong.length === 0) return;
     if (currentUser) {
       let menuHanhDongHTML = '';
-
       if (currentUser.role === 'landlord') {
         menuHanhDongHTML += `<a href="dang-tin.html" class="btn btn--landlord">Đăng tin trọ</a>`;
       }
-      
       menuHanhDongHTML += `
         <div class="user-profile-header">
           <span class="user-avatar-text">👤 ${currentUser.name}</span>
           <button id="nut-dang-xuat" class="btn btn--landlord nut-dang-xuat-header">Đăng xuất</button>
         </div>
       `;
-
       vungHanhDong.html(menuHanhDongHTML);
-
       $('#nut-dang-xuat').on('click', function() {
         if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
           sessionStorage.removeItem("currentUser");
           window.location.href = "index.html";
         }
       });
+    } else {
+      vungHanhDong.html(`
+        <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+        <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+      `);
     }
   }
 
