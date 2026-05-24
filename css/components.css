@@ -253,8 +253,9 @@
 
 .card-phong__vach-ngan {
   border: none;
-  border-top: 1px solid #f1f5f9;
-  margin-bottom: 15px;
+  border-top: 1px solid #2266c0;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .card-phong__dong-gia {

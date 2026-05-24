@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin cá nhân - NhaTroSV</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <header class="dau-trang">
+      <div class="khung-chua">
+        <nav class="thanh-dieu-huong">
+          <a href="index.html" class="logo"><span>🏠 NhaTroSV</span></a>
+          <ul class="menu">
+            <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+          </ul>
+          <div class="hanh-dong" id="vung-hanh-dong">
+            <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="trang-thong-tin">
+      <div class="khung-thong-tin">
+        <div class="thong-tin__tieu-de">Thông tin cá nhân</div>
+
+        <!-- Avatar -->
+        <div class="thong-tin__avatar" id="hien-thi-avatar">?</div>
+        <!-- Vai trò hiển thị dưới avatar, trên nút đổi ảnh -->
+        <div
+          id="hien-doi-tuong"
+          style="
+            text-align: center;
+            margin: 4px 0 2px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+          "
+        ></div>
+
+        <label for="input-avatar" class="thong-tin__avatar-label"
+          >📷 Đổi ảnh đại diện</label
+        >
+        <input
+          type="file"
+          id="input-avatar"
+          accept="image/*"
+          style="display: none"
+        />
+
+        <!-- Form -->
+        <div class="thong-tin__nhom">
+          <label class="thong-tin__nhan">Họ và tên</label>
+          <input
+            type="text"
+            id="sua-ten"
+            class="thong-tin__o-nhap"
+            placeholder="Nhập họ tên"
+          />
+        </div>
+
+        <div class="thong-tin__nhom">
+          <label class="thong-tin__nhan">Email</label>
+          <input
+            type="email"
+            id="sua-email"
+            class="thong-tin__o-nhap"
+            placeholder="Nhập email"
+          />
+        </div>
+
+        <div class="thong-tin__nhom">
+          <label class="thong-tin__nhan">Số điện thoại</label>
+          <input
+            type="text"
+            id="sua-sdt"
+            class="thong-tin__o-nhap"
+            placeholder="Nhập số điện thoại"
+          />
+        </div>
+
+        <button class="thong-tin__btn-luu" id="btn-luu">💾 Lưu thay đổi</button>
+        <div class="thong-tin__thong-bao" id="thong-bao-luu">
+          ✅ Đã lưu thành công!
+        </div>
+        <button class="thong-tin__btn-xuat" id="btn-dang-xuat">
+          🚪 Đăng xuất
+        </button>
+      </div>
+    </div>
+
+    <script src="js/thong-tin.js"></script>
+  </body>
+</html>

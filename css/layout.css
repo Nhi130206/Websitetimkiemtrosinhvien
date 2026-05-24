@@ -65,41 +65,38 @@
 
 /* GIAO DIỆN ICON NGƯỜI DÙNG KHI ĐÃ ĐĂNG NHẬP */
 .user-profile-header {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-.user-avatar-text {
-  background-color: #ebf3ff;
-  color: var(--mau-chu-dao);
-  padding: 8px 16px;
-  border-radius: 20px;
+/* Avatar tròn chữ cái đầu */
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--mau-chu-dao);
+  color: #fff;
   font-weight: 700;
-  font-size: 14px;
-  display: inline-flex;
+  font-size: 16px;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  user-select: none;
-}
-
-.nut-menu {
-  display: none; /* Mặc định ẩn nút 3 gạch trên máy tính lớn */
-  background: none;
-  border: none;
-  font-size: 20px;
+  justify-content: center;
   cursor: pointer;
+  user-select: none;
+  border: 2px solid #c7dcff;
+  text-decoration: none;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
-/* Footer */
-.chan-trang {
-  background-color: #1e293b;
-  color: #94a3b8;
-  padding: 24px 0;
-  text-align: center;
-  font-size: 14px;
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
-
 /* ==================== RESPONSIVE HEADER (CHO MÀN HÌNH NHỎ) ==================== */
 @media (max-width: 992px) {
   .menu {
@@ -119,5 +116,41 @@
   .btn {
     padding: 6px 12px;
     font-size: 13px;
+  }
+}
+@media (max-width: 992px) {
+  .thanh-dieu-huong {
+    position: relative;
+  }
+
+  .nut-menu {
+    display: block !important;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--mau-chu-text);
+  }
+
+  .menu {
+    display: none; /* Mặc định ẩn để toggle slide */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--nen-trang);
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid var(--mau-vien);
+    border-radius: var(--bo-goc-trung);
+    box-shadow: var(--do-bong-dam);
+    z-index: 100;
+    gap: 10px;
+  }
+
+  .menu__link {
+    display: block;
+    width: 100%;
+    text-align: left;
   }
 }

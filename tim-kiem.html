@@ -1,135 +1,160 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Tìm kiếm phòng trọ - NhaTroSV</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS liên kết theo đúng thư mục của bạn -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
 
     <!-- jQuery cơ bản -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- JS xử lý dữ liệu -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- ==================== HEADER ==================== -->
     <header class="dau-trang">
-        <div class="khung-chua">
-            <nav class="thanh-dieu-huong">
-                <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <span>🏠 NhaTroSV</span>
-                </a>
-                
-                <!-- Menu -->
-                <ul class="menu">
-                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
-                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
-                    <li><a href="tim-kiem.html" class="menu__link active">Tìm kiếm</a></li>
-                </ul>
-                
-                <!-- Actions -->
-                <div class="hanh-dong">
-                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
-                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
-                </div>
-            </nav>
-        </div>
+      <div class="khung-chua">
+        <nav class="thanh-dieu-huong">
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span>🏠 NhaTroSV</span>
+          </a>
+
+          <!-- Menu -->
+          <ul class="menu">
+            <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+            <li>
+              <a href="tim-kiem.html" class="menu__link active">Tìm kiếm</a>
+            </li>
+          </ul>
+
+          <!-- Actions -->
+          <div class="hanh-dong" id="vung-hanh-dong">
+            <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+            <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <!-- ==================== TRANG TÌM KIẾM CHÍNH ==================== -->
     <div class="trang-tim-kiem">
-        <!-- 1. Thanh lọc bên trái (Sidebar) -->
-        <aside class="thanh-loc">
-            <div class="dau-loc">
-                <div class="tieu-de-loc">⚙️ Bộ lọc</div>
-                <button id="nut-dat-lai" class="nut-dat-lai">Đặt lại</button>
+      <!-- 1. Thanh lọc bên trái (Sidebar) -->
+      <aside class="thanh-loc">
+        <div class="dau-loc">
+          <div class="tieu-de-loc">⚙️ Bộ lọc</div>
+          <button id="nut-dat-lai" class="nut-dat-lai">Đặt lại</button>
+        </div>
+
+        <!-- Lọc theo Đường/Phố (ĐÃ CẬP NHẬT) -->
+        <div class="nhom-loc">
+          <label class="nhan-loc">Chọn đường/phố:</label>
+          <select id="chon-duong" class="input-select">
+            <option value="all">Tất cả các đường</option>
+            <option value="Y Wang">Đường Y Wang</option>
+            <option value="Lê Duẩn">Đường Lê Duẩn</option>
+            <option value="Giải Phóng">Đường Giải Phóng</option>
+            <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
+            <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
+          </select>
+        </div>
+
+        <!-- Lọc theo Khoảng giá -->
+        <div class="nhom-loc">
+          <label class="nhan-loc">Khoảng giá tối thiểu (đ):</label>
+          <input type="number" id="loc-gia-thap" class="input-text" value="0" />
+
+          <label class="nhan-loc" style="margin-top: 10px"
+            >Khoảng giá tối đa (đ):</label
+          >
+          <input
+            type="number"
+            id="loc-gia-cao"
+            class="input-text"
+            value="100000000000"
+          />
+        </div>
+
+        <!-- Lọc theo Loại phòng -->
+        <div class="nhom-loc">
+          <label class="nhan-loc">Loại phòng</label>
+          <div class="nhom-hop-kiem">
+            <label class="nhan-hop-kiem">
+              <input type="checkbox" value="single" class="loc-loai-phong" />
+              Phòng đơn
+            </label>
+            <label class="nhan-hop-kiem">
+              <input type="checkbox" value="double" class="loc-loai-phong" />
+              Phòng đôi
+            </label>
+            <label class="nhan-hop-kiem">
+              <input type="checkbox" value="dormitory" class="loc-loai-phong" />
+              Ký túc xá
+            </label>
+          </div>
+        </div>
+
+        <!-- Lọc theo Tiện ích -->
+        <div class="nhom-loc">
+          <label class="nhan-loc">Tiện ích</label>
+          <div class="nhom-hop-kiem">
+            <label class="nhan-hop-kiem">
+              <input type="checkbox" value="wifi" class="loc-tien-ich" /> Wifi
+              miễn phí
+            </label>
+            <label class="nhan-hop-kiem">
+              <input type="checkbox" value="may_giat" class="loc-tien-ich" />
+              Máy giặt
+            </label>
+            <label class="nhan-hop-kiem">
+              <input type="checkbox" value="gac_lung" class="loc-tien-ich" />
+              Gác lửng
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 2. Nội dung hiển thị kết quả bên phải -->
+      <main class="noi-dung-ket-qua">
+        <div class="khung-ket-qua">
+          <div class="thong-tin-ket-qua">
+            <div>
+              <h1 id="so-luong-phong" class="tieu-de-ket-qua">
+                Tìm thấy 0 phòng trọ
+              </h1>
+              <p class="khu-vuc-ket-qua">Tất cả khu vực</p>
             </div>
+          </div>
 
-            <!-- Lọc theo Đường/Phố (ĐÃ CẬP NHẬT) -->
-            <div class="nhom-loc">
-                <label class="nhan-loc">Chọn đường/phố:</label>
-                <select id="chon-duong" class="input-select">
-                    <option value="all">Tất cả các đường</option>
-                    <option value="Y Wang">Đường Y Wang</option>
-                    <option value="Lê Duẩn">Đường Lê Duẩn</option>
-                    <option value="Giải Phóng">Đường Giải Phóng</option>
-                    <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
-                    <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
-                </select>
-            </div>
+          <div class="thanh-sap-xep">
+            <span class="nhan-sap-xep">Sắp xếp:</span>
+            <select id="sap-xep" class="sap-xep-select">
+              <option value="mac-dinh">Mặc định</option>
+              <option value="gia-tang">Giá thấp đến cao</option>
+              <option value="gia-giam">Giá cao đến thấp</option>
+            </select>
+          </div>
+        </div>
 
-            <!-- Lọc theo Khoảng giá -->
-            <div class="nhom-loc">
-                <label class="nhan-loc">Khoảng giá tối thiểu (đ):</label>
-                <input type="number" id="loc-gia-thap" class="input-text" value="0">
-                
-                <label class="nhan-loc" style="margin-top: 10px;">Khoảng giá tối đa (đ):</label>
-                <input type="number" id="loc-gia-cao" class="input-text" value="10000000">
-            </div>
-
-            <!-- Lọc theo Loại phòng -->
-            <div class="nhom-loc">
-                <label class="nhan-loc">Loại phòng</label>
-                <div class="nhom-hop-kiem">
-                    <label class="nhan-hop-kiem">
-                        <input type="checkbox" value="single" class="loc-loai-phong"> Phòng đơn
-                    </label>
-                    <label class="nhan-hop-kiem">
-                        <input type="checkbox" value="double" class="loc-loai-phong"> Phòng đôi
-                    </label>
-                    <label class="nhan-hop-kiem">
-                        <input type="checkbox" value="dormitory" class="loc-loai-phong"> Ký túc xá
-                    </label>
-                </div>
-            </div>
-
-            <!-- Lọc theo Tiện ích -->
-            <div class="nhom-loc">
-                <label class="nhan-loc">Tiện ích</label>
-                <div class="nhom-hop-kiem">
-                    <label class="nhan-hop-kiem">
-                        <input type="checkbox" value="wifi" class="loc-tien-ich"> Wifi miễn phí
-                    </label>
-                    <label class="nhan-hop-kiem">
-                        <input type="checkbox" value="may_giat" class="loc-tien-ich"> Máy giặt
-                    </label>
-                    <label class="nhan-hop-kiem">
-                        <input type="checkbox" value="gac_lung" class="loc-tien-ich"> Gác lửng
-                    </label>
-                </div>
-            </div>
-        </aside>
-
-        <!-- 2. Nội dung hiển thị kết quả bên phải -->
-        <main class="noi-dung-ket-qua">
-            <div class="khung-ket-qua">
-                <div class="thong-tin-ket-qua">
-                    <div>
-                        <h1 id="so-luong-phong" class="tieu-de-ket-qua">Tìm thấy 0 phòng trọ</h1>
-                        <p class="khu-vuc-ket-qua">Tất cả khu vực</p>
-                    </div>
-                </div>
-
-                <div class="thanh-sap-xep">
-                    <span class="nhan-sap-xep">Sắp xếp:</span>
-                    <select id="sap-xep" class="sap-xep-select">
-                        <option value="mac-dinh">Mặc định</option>
-                        <option value="gia-tang">Giá thấp đến cao</option>
-                        <option value="gia-giam">Giá cao đến thấp</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Lưới hiển thị danh sách phòng trọ nổi bật -->
-            <div id="danh-sach-tim-kiem" class="luoi-phong"></div>
-        </main>
+        <!-- Lưới hiển thị danh sách phòng trọ nổi bật -->
+        <div id="danh-sach-tim-kiem" class="luoi-phong"></div>
+      </main>
     </div>
-</body>
+    <footer class="chan-trang">
+      <div class="khung-chua">
+        <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>

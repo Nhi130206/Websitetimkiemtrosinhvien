@@ -1,130 +1,184 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
     <title>Đăng nhập & Đăng ký - NhaTroSV</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS liên kết theo đúng cấu trúc của bạn -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/main.css">
-   
-    
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
     <!-- jQuery cơ bản -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- JS xử lý dữ liệu -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- ==================== HEADER ==================== -->
     <header class="dau-trang">
-        <div class="khung-chua">
-            <nav class="thanh-dieu-huong">
-                <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <span>🏠 NhaTroSV</span>
-                </a>
-                
-                <!-- Menu -->
-                <ul class="menu">
-                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
-                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
-                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
-                </ul>
-                
-                <!-- Actions (Sẽ được JS tự động thay đổi khi đã đăng nhập) -->
-                <div class="hanh-dong" id="vung-hanh-dong">
-                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
-                    <a href="dang-nhap.html" class="btn btn--login active">Đăng nhập</a>
-                </div>
-            </nav>
-        </div>
+      <div class="khung-chua">
+        <nav class="thanh-dieu-huong">
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span>🏠 NhaTroSV</span>
+          </a>
+
+          <!-- Menu -->
+          <ul class="menu">
+            <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+          </ul>
+
+          <!-- Actions (Sẽ được JS tự động thay đổi khi đã đăng nhập) -->
+          <div class="hanh-dong" id="vung-hanh-dong">
+            <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+            <a href="dang-nhap.html" class="btn btn--login active">Đăng nhập</a>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <!-- ==================== KHUNG CHỨA TÀI KHOẢN TRUNG TÂM ==================== -->
     <div class="trang-tai-khoan">
-        <div class="khung-tai-khoan">
-            <div class="logo-trung-tam">🏠 NhaTroSV</div>
+      <div class="khung-tai-khoan">
+        <div class="logo-trung-tam">🏠 NhaTroSV</div>
 
-            <!-- ==================== FORM 1: ĐĂNG NHẬP ==================== -->
-            <div id="khung-dang-nhap">
-                <h2 class="tieu-de-tai-khoan">Đăng nhập</h2>
-                <p class="mo-ta-tai-khoan">Chào mừng trở lại! Đăng nhập để tiếp tục</p>
+        <!-- ==================== FORM 1: ĐĂNG NHẬP ==================== -->
+        <div id="khung-dang-nhap">
+          <h2 class="tieu-de-tai-khoan">Đăng nhập</h2>
+          <p class="mo-ta-tai-khoan">
+            Chào mừng trở lại! Đăng nhập để tiếp tục
+          </p>
 
-                <form id="form-dang-nhap-truc-tiep">
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">✉️ Email</label>
-                        <input type="email" id="nhap-email" class="input-text" placeholder="your@email.com" required>
-                    </div>
-s
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">🔒 Mật khẩu</label>
-                        <input type="password" id="nhap-mat-khau" class="input-text" placeholder="••••••••" required>
-                    </div>
-
-                    <div class="ghi-nho-nhom">
-                        <label class="ghi-nho-nhan">
-                            <input type="checkbox"> Ghi nhớ đăng nhập
-                        </label>
-                        <a href="#" class="quen-mat-khau" onclick="alert('Tính năng đang phát triển!'); return false;">Quên mật khẩu?</a>
-                    </div>
-
-                    <button type="submit" class="btn btn--chinh btn--dang-nhap">Đăng nhập</button>
-                </form>
-
-                <p class="lien-ket-chuyen">Chưa có tài khoản? <a href="#" id="link-sang-dang-ky">Đăng ký ngay</a></p>
+          <form id="form-dang-nhap-truc-tiep">
+            <div class="truong-nhap">
+              <label class="nhan-nhap">✉️ Email</label>
+              <input
+                type="email"
+                id="nhap-email"
+                class="input-text"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+            <div class="truong-nhap">
+              <label class="nhan-nhap">🔒 Mật khẩu</label>
+              <input
+                type="password"
+                id="nhap-mat-khau"
+                class="input-text"
+                placeholder="••••••••"
+                required
+              />
             </div>
 
-            <!-- ==================== FORM 2: ĐĂNG KÝ (MẶC ĐỊNH ẨN BẰNG CLASS AN) ==================== -->
-            <div id="khung-dang-ky" class="an">
-                <h2 class="tieu-de-tai-khoan">Đăng ký tài khoản</h2>
-                <p class="mo-ta-tai-khoan">Tạo tài khoản mới để bắt đầu tìm trọ</p>
-
-                <form id="form-dang-ky-truc-tiep">
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">👤 Họ và tên</label>
-                        <input type="text" id="ky-ten" class="input-text" placeholder="Nguyễn Văn A" required>
-                    </div>
-
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">✉️ Email</label>
-                        <input type="email" id="ky-email" class="input-text" placeholder="your@email.com" required>
-                    </div>
-
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">📞 Số điện thoại</label>
-                        <input type="text" id="ky-sodt" class="input-text" placeholder="0901234567" required>
-                    </div>
-
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">🔒 Mật khẩu</label>
-                        <input type="password" id="ky-mat-khau" class="input-text" placeholder="••••••••" required>
-                    </div>
-
-                    <!-- NÚT CHỌN ĐỐI TƯỢNG ĐĂNG KÝ: SINH VIÊN / CHỦ TRỌ -->
-                    <div class="truong-nhap">
-                        <label class="nhan-nhap">💼 Bạn là ai? (Đối tượng)</label>
-                        <select id="ky-vai-tro" class="input-select">
-                            <option value="student">Sinh viên đang tìm trọ</option>
-                            <option value="landlord">Chủ nhà trọ cho thuê</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn--chinh btn-dang-ky-moi">Đăng ký</button>
-                </form>
-
-                <p class="lien-ket-chuyen">Đã có tài khoản? <a href="#" id="link-sang-dang-nhap">Đăng nhập</a></p>
+            <div class="ghi-nho-nhom">
+              <label class="ghi-nho-nhan">
+                <input type="checkbox" /> Ghi nhớ đăng nhập
+              </label>
+              <a
+                href="#"
+                class="quen-mat-khau"
+                onclick="
+                  alert('Tính năng đang phát triển!');
+                  return false;
+                "
+                >Quên mật khẩu?</a
+              >
             </div>
 
+            <button type="submit" class="btn btn--chinh btn--dang-nhap">
+              Đăng nhập
+            </button>
+          </form>
+
+          <p class="lien-ket-chuyen">
+            Chưa có tài khoản?
+            <a href="#" id="link-sang-dang-ky">Đăng ký ngay</a>
+          </p>
         </div>
+
+        <!-- ==================== FORM 2: ĐĂNG KÝ (MẶC ĐỊNH ẨN BẰNG CLASS AN) ==================== -->
+        <div id="khung-dang-ky">
+          <h2 class="tieu-de-tai-khoan">Đăng ký tài khoản</h2>
+          <p class="mo-ta-tai-khoan">Tạo tài khoản mới để bắt đầu tìm trọ</p>
+
+          <form id="form-dang-ky-truc-tiep">
+            <div class="truong-nhap">
+              <label class="nhan-nhap">👤 Họ và tên</label>
+              <input
+                type="text"
+                id="ky-ten"
+                class="input-text"
+                placeholder="Nguyễn Văn A"
+                required
+              />
+            </div>
+
+            <div class="truong-nhap">
+              <label class="nhan-nhap">✉️ Email</label>
+              <input
+                type="email"
+                id="ky-email"
+                class="input-text"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+
+            <div class="truong-nhap">
+              <label class="nhan-nhap">📞 Số điện thoại</label>
+              <input
+                type="text"
+                id="ky-sodt"
+                class="input-text"
+                placeholder="0901234567"
+                required
+              />
+            </div>
+
+            <div class="truong-nhap">
+              <label class="nhan-nhap">🔒 Mật khẩu</label>
+              <input
+                type="password"
+                id="ky-mat-khau"
+                class="input-text"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <!-- NÚT CHỌN ĐỐI TƯỢNG ĐĂNG KÝ: SINH VIÊN / CHỦ TRỌ -->
+            <div class="truong-nhap">
+              <label class="nhan-nhap">💼 Bạn là ai? (Đối tượng)</label>
+              <select id="ky-vai-tro" class="input-select">
+                <option value="student">Sinh viên đang tìm trọ</option>
+                <option value="landlord">Chủ nhà trọ cho thuê</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn--chinh btn-dang-ky-moi">
+              Đăng ký
+            </button>
+          </form>
+
+          <p class="lien-ket-chuyen">
+            Đã có tài khoản? <a href="#" id="link-sang-dang-nhap">Đăng nhập</a>
+          </p>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>

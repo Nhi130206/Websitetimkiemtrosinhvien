@@ -1,197 +1,222 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NhaTroSV - Đại học Tây Nguyên</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-        
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS liên kết theo đúng thư mục của bạn -->
-    <link rel="stylesheet" href="css/main.css">
- 
-    
+    <link rel="stylesheet" href="css/main.css" />
+
     <!-- jQuery cơ bản -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- JS -->
     <script src="js/main.js"></script>
     <script src="js/data.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- ==================== HEADER ==================== -->
     <header class="dau-trang">
-        <div class="khung-chua">
-            <nav class="thanh-dieu-huong">
-                <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <span>🏠 NhaTroSV</span>
-                </a>
-                
-                <!-- Menu -->
-                <ul class="menu">
-                    <li><a href="index.html" class="menu__link active">Trang chủ</a></li>
-                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
-                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
-                </ul>
-                
-                <!-- Actions -->
-                <div class="hanh-dong">
-                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
-                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
-                </div>
-            </nav>
-        </div>
+      <div class="khung-chua">
+        <nav class="thanh-dieu-huong">
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span>🏠 NhaTroSV</span>
+          </a>
+
+          <!-- Menu -->
+          <ul class="menu">
+            <li>
+              <a href="index.html" class="menu__link active">Trang chủ</a>
+            </li>
+            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+          </ul>
+
+          <!-- Actions -->
+          <div class="hanh-dong" id="vung-hanh-dong">
+            <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+            <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <!-- ==================== HERO SECTION ==================== -->
     <section class="vung-dau">
-        <div class="khung-chua">
-            <div class="noi-dung-chinh">
-                <h1 class="tieu-de-chinh">
-                    Tìm nhà trọ gần trường <br>
-                    <span class="chu-chuyen-sac">Nhanh - Dễ - Minh bạch</span>
-                </h1>
-                <p class="mo-ta-chinh">Hệ thống tìm kiếm nhà trọ thông minh dành riêng cho sinh viên. Xem vị trí trên bản đồ, so sánh giá cả, không phí ẩn.</p>
-                
-                <!-- Ô tìm kiếm nhanh -->
-                <div class="tim-kiem-nhanh">
-                    <div class="truong-input">
-                        <label class="nhan-input">Chọn đường/phố:</label>
-                        <select id="chon-duong" class="input-select">
-                            <option value="all">Tất cả các đường</option>
-                            <option value="Y Wang">Đường Y Wang</option>
-                            <option value="Lê Duẩn">Đường Lê Duẩn</option>
-                            <option value="Giải Phóng">Đường Giải Phóng</option>
-                            <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
-                            <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
-                        </select>
-                    </div>
-                    
-                    
-                    <div class="truong-input truong-input--rong">
-                        <label class="nhan-input">Khu vực / Địa chỉ</label>
-                        <input type="text" id="nhap-hem" class="input-text" placeholder="Ví dụ: Ea Tam, đường Y Wang, Lê Duẩn...">
-                    </div>
-                    
-                    <button id="btn-tim" class="btn btn--chinh btn--tim">Tìm phòng trọ ngay</button>
-                </div>
+      <div class="khung-chua">
+        <div class="noi-dung-chinh">
+          <h1 class="tieu-de-chinh">
+            Tìm nhà trọ gần trường <br />
+            <span class="chu-chuyen-sac">Nhanh - Dễ - Minh bạch</span>
+          </h1>
+          <p class="mo-ta-chinh">
+            Hệ thống tìm kiếm nhà trọ thông minh dành riêng cho sinh viên. Xem
+            vị trí trên bản đồ, so sánh giá cả, không phí ẩn.
+          </p>
+
+          <!-- Ô tìm kiếm nhanh -->
+          <div class="tim-kiem-nhanh">
+            <div class="truong-input">
+              <label class="nhan-input">Chọn đường/phố:</label>
+              <select id="chon-duong" class="input-select">
+                <option value="all">Tất cả các đường</option>
+                <option value="Y Wang">Đường Y Wang</option>
+                <option value="Lê Duẩn">Đường Lê Duẩn</option>
+                <option value="Giải Phóng">Đường Giải Phóng</option>
+                <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
+                <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
+              </select>
             </div>
+
+            <div class="truong-input truong-input--rong">
+              <label class="nhan-input">Khu vực / Địa chỉ</label>
+              <input
+                type="text"
+                id="nhap-hem"
+                class="input-text"
+                placeholder="Ví dụ: Ea Tam, đường Y Wang, Lê Duẩn..."
+              />
+            </div>
+
+            <button id="btn-tim" class="btn btn--chinh btn--tim">
+              Tìm phòng trọ ngay
+            </button>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ==================== THỐNG KÊ ==================== -->
     <section class="thong-ke">
-        <div class="khung-chua">
-            <div class="luoi-thong-ke">
-                <div class="muc-thong-ke">
-                    <div class="so-lieu">500+</div>
-                    <div class="chu-thich">Phòng trọ đăng ký</div>
-                </div>
-                <div class="muc-thong-ke">
-                    <div class="so-lieu">3</div>
-                    <div class="chu-thich">Trường ĐH / CĐ</div>
-                </div>
-                <div class="muc-thong-ke">
-                    <div class="so-lieu">2.000+</div>
-                    <div class="chu-thich">Sinh viên tìm được trọ</div>
-                </div>
-                <div class="muc-thong-ke">
-                    <div class="so-lieu">100%</div>
-                    <div class="chu-thich">Miễn phí cho sinh viên</div>
-                </div>
-            </div>
+      <div class="khung-chua">
+        <div class="luoi-thong-ke">
+          <div class="muc-thong-ke">
+            <div class="so-lieu">500+</div>
+            <div class="chu-thich">Phòng trọ đăng ký</div>
+          </div>
+          <div class="muc-thong-ke">
+            <div class="so-lieu">3</div>
+            <div class="chu-thich">Trường ĐH / CĐ</div>
+          </div>
+          <div class="muc-thong-ke">
+            <div class="so-lieu">2.000+</div>
+            <div class="chu-thich">Sinh viên tìm được trọ</div>
+          </div>
+          <div class="muc-thong-ke">
+            <div class="so-lieu">100%</div>
+            <div class="chu-thich">Miễn phí cho sinh viên</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ==================== TÍNH NĂNG ==================== -->
     <section class="tinh-nang">
-        <div class="khung-chua">
-            <h2 class="tieu-de-phan">Tại sao chọn NhaTroSV?</h2>
-            
-            <div class="luoi-tinh-nang">
-                <div class="the-tinh-nang">
-                    <div class="icon-tinh-nang icon-tinh-nang--xanh">📍</div>
-                    <h3 class="tieude-tinh-nang">Gần trường học</h3>
-                    <p class="mota-tinh-nang">Xem vị trí phòng trọ trực quan trên bản đồ quanh trường Đại học Tây Nguyên.</p>
-                </div>
-                
-                <div class="the-tinh-nang">
-                    <div class="icon-tinh-nang icon-tinh-nang--vang">💵</div>
-                    <h3 class="tieude-tinh-nang">Giá cả minh bạch</h3>
-                    <p class="mota-tinh-nang">Thông tin tiền thuê, tiền cọc rõ ràng, phù hợp túi tiền sinh viên.</p>
-                </div>
-                
-                <div class="the-tinh-nang">
-                    <div class="icon-tinh-nang icon-tinh-nang--tim">⚡</div>
-                    <h3 class="tieude-tinh-nang">So sánh nhanh</h3>
-                    <p class="mota-tinh-nang">Dễ dàng lọc tìm và so sánh giá dịch vụ giữa các phòng trọ khác nhau.</p>
-                </div>
-                
-                <div class="the-tinh-nang">
-                    <div class="icon-tinh-nang icon-tinh-nang--cam">🛡️</div>
-                    <h3 class="tieude-tinh-nang">An toàn</h3>
-                    <p class="mota-tinh-nang">Chủ nhà xác thực, thông tin rõ ràng, tips tránh lừa đảo.</p>
-                </div>
-            </div>
+      <div class="khung-chua">
+        <h2 class="tieu-de-phan">Tại sao chọn NhaTroSV?</h2>
+
+        <div class="luoi-tinh-nang">
+          <div class="the-tinh-nang">
+            <div class="icon-tinh-nang icon-tinh-nang--xanh">📍</div>
+            <h3 class="tieude-tinh-nang">Gần trường học</h3>
+            <p class="mota-tinh-nang">
+              Xem vị trí phòng trọ trực quan trên bản đồ quanh trường Đại học
+              Tây Nguyên.
+            </p>
+          </div>
+
+          <div class="the-tinh-nang">
+            <div class="icon-tinh-nang icon-tinh-nang--vang">💵</div>
+            <h3 class="tieude-tinh-nang">Giá cả minh bạch</h3>
+            <p class="mota-tinh-nang">
+              Thông tin tiền thuê, tiền cọc rõ ràng, phù hợp túi tiền sinh viên.
+            </p>
+          </div>
+
+          <div class="the-tinh-nang">
+            <div class="icon-tinh-nang icon-tinh-nang--tim">⚡</div>
+            <h3 class="tieude-tinh-nang">So sánh nhanh</h3>
+            <p class="mota-tinh-nang">
+              Dễ dàng lọc tìm và so sánh giá dịch vụ giữa các phòng trọ khác
+              nhau.
+            </p>
+          </div>
+
+          <div class="the-tinh-nang">
+            <div class="icon-tinh-nang icon-tinh-nang--cam">🛡️</div>
+            <h3 class="tieude-tinh-nang">An toàn</h3>
+            <p class="mota-tinh-nang">
+              Chủ nhà xác thực, thông tin rõ ràng, tips tránh lừa đảo.
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ==================== HÀNH ĐỘNG NHANH ==================== -->
     <section class="hanh-dong-nhanh">
-        <div class="khung-chua">
-            <div class="luoi-hanh-dong">
-                <a href="ban-do.html" class="the-hanh-dong">
-                    <div class="icon-hanh-dong icon-hanh-dong--xanh">📍</div>
-                    <div class="noidung-hanh-dong">
-                        <h3>Xem trên bản đồ</h3>
-                        <p>Tìm phòng trọ quanh trường bằng bản đồ tương tác</p>
-                    </div>
-                </a>
-                
-                <a href="tim-kiem.html" class="the-hanh-dong">
-                    <div class="icon-hanh-dong icon-hanh-dong--luc">🔍</div>
-                    <div class="noidung-hanh-dong">
-                        <h3>Tìm kiếm nâng cao</h3>
-                        <p>Lọc theo giá, khoảng cách, tiện ích</p>
-                    </div>
-                </a>
+      <div class="khung-chua">
+        <div class="luoi-hanh-dong">
+          <a href="ban-do.html" class="the-hanh-dong">
+            <div class="icon-hanh-dong icon-hanh-dong--xanh">📍</div>
+            <div class="noidung-hanh-dong">
+              <h3>Xem trên bản đồ</h3>
+              <p>Tìm phòng trọ quanh trường bằng bản đồ tương tác</p>
             </div>
+          </a>
+
+          <a href="tim-kiem.html" class="the-hanh-dong">
+            <div class="icon-hanh-dong icon-hanh-dong--luc">🔍</div>
+            <div class="noidung-hanh-dong">
+              <h3>Tìm kiếm nâng cao</h3>
+              <p>Lọc theo giá, khoảng cách, tiện ích</p>
+            </div>
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- ==================== TRỌ MỚI XUẤT HIỆN ==================== -->
     <section class="tro-moi">
-        <div class="khung-chua">
-            <div class="tieu-de-vung">
-                <div class="ben-trai">
-                    <h2 class="tieu-de-phan">Phòng trọ nổi bật</h2>
-                </div>
-                <a href="tim-kiem.html" class="xem-tat-ca">Xem tất cả →</a>
-            </div>
-            
-            <!-- Thùng chứa danh sách phòng - sẽ được render bằng JS -->
-            <div id="danh-sach-tro" class="luoi-phong"></div>
+      <div class="khung-chua">
+        <div class="tieu-de-vung">
+          <div class="ben-trai">
+            <h2 class="tieu-de-phan">Phòng trọ nổi bật</h2>
+          </div>
+          <a href="tim-kiem.html" class="xem-tat-ca">Xem tất cả →</a>
         </div>
+
+        <!-- Thùng chứa danh sách phòng - sẽ được render bằng JS -->
+        <div id="danh-sach-tro" class="luoi-phong"></div>
+      </div>
     </section>
 
     <!-- ==================== CTA ==================== -->
     <section class="goi-y">
-        <div class="khung-chua">
-            <div class="noi-dung-goi-y">
-                <h2 class="tieu-de-goi-y">Bạn là chủ nhà trọ?</h2>
-                <p class="mo-ta-goi-y">Đăng tin miễn phí, tiếp cận hàng nghìn sinh viên đang tìm trọ</p>
-                <a href="dang-tin.html" class="btn btn--goi-y">Đăng tin ngay</a>
-            </div>
+      <div class="khung-chua">
+        <div class="noi-dung-goi-y">
+          <h2 class="tieu-de-goi-y">Bạn là chủ nhà trọ?</h2>
+          <p class="mo-ta-goi-y">
+            Đăng tin miễn phí, tiếp cận hàng nghìn sinh viên đang tìm trọ
+          </p>
+          <a href="dang-tin.html" class="btn btn--goi-y">Đăng tin ngay</a>
         </div>
+      </div>
     </section>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="chan-trang">
-        <div class="khung-chua">
-            <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
-        </div>
+      <div class="khung-chua">
+        <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

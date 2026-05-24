@@ -1,169 +1,265 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
     <title>Đăng tin cho thuê phòng trọ - NhaTroSV</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS liên kết theo đúng cấu trúc của bạn -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/main.css">
-    
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/pages.css" />
+    <link rel="stylesheet" href="css/main.css" />
+
     <!-- jQuery online chuẩn -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <!-- JS xử lý dữ liệu -->
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <!-- ==================== HEADER ==================== -->
     <header class="dau-trang">
-        <div class="khung-chua">
-            <nav class="thanh-dieu-huong">
-                <!-- Logo -->
-                <a href="index.html" class="logo">
-                    <span>🏠 NhaTroSV</span>
-                </a>
-                
-                <!-- Menu -->
-                <ul class="menu">
-                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
-                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
-                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
-                </ul>
-                
-                <!-- Actions -->
-                <div class="hanh-dong" id="vung-hanh-dong">
-                    <a href="dang-tin.html" class="btn btn--landlord active">Đăng tin trọ</a>
-                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
-                </div>
-            </nav>
-        </div>
+      <div class="khung-chua">
+        <nav class="thanh-dieu-huong">
+          <!-- Logo -->
+          <a href="index.html" class="logo">
+            <span>🏠 NhaTroSV</span>
+          </a>
+
+          <!-- Menu -->
+          <ul class="menu">
+            <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+          </ul>
+
+          <!-- Actions -->
+          <div class="hanh-dong" id="vung-hanh-dong">
+            <a href="dang-tin.html" class="btn btn--landlord active"
+              >Đăng tin trọ</a
+            >
+            <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <!-- ==================== KHUNG ĐĂNG TIN THIẾT KẾ CHUẨN ==================== -->
     <div class="trang-dang-tin">
-        <div class="khung-chua-nho">
-            <h1 class="tieu-de-trang">Đăng tin cho thuê phòng trọ</h1>
-            <p class="mo-ta-trang">Miễn phí - Tiếp cận hàng nghìn sinh viên ĐH Tây Nguyên</p>
+      <div class="khung-chua-nho">
+        <h1 class="tieu-de-trang">Đăng tin cho thuê phòng trọ</h1>
+        <p class="mo-ta-trang">
+          Miễn phí - Tiếp cận hàng nghìn sinh viên ĐH Tây Nguyên
+        </p>
 
-            <!-- Toàn bộ các trường nhập được bao bọc gọn trong một khung Card trắng bo góc giống ảnh mẫu -->
-            <form id="form-dang-tin" class="form-dang-tin">
-                
-                <!-- KHỐI 1: THÔNG TIN CƠ BẢN -->
-                <div class="dau-khung-nhap">
-                    <span class="emoji-khoi">📄</span>
-                    <div>
-                        <h3>Thông tin cơ bản</h3>
-                        <p>Mô tả phòng trọ của bạn</p>
-                    </div>
-                </div>
+        <!-- Toàn bộ các trường nhập được bao bọc gọn trong một khung Card trắng bo góc giống ảnh mẫu -->
+        <form id="form-dang-tin" class="form-dang-tin">
+          <!-- KHỐI 1: THÔNG TIN CƠ BẢN -->
+          <div class="dau-khung-nhap">
+            <span class="emoji-khoi">📄</span>
+            <div>
+              <h3>Thông tin cơ bản</h3>
+              <p>Mô tả phòng trọ của bạn</p>
+            </div>
+          </div>
 
-                <div class="nhom-truong">
-                    <label class="nhan-form">Tiêu đề tin đăng *</label>
-                    <input type="text" id="dang-tieu-de" class="input-text" placeholder="VD: Phòng trọ cao cấp gần ĐH Tây Nguyên" required>
-                </div>
+          <div class="nhom-truong">
+            <label class="nhan-form">Tiêu đề tin đăng *</label>
+            <input
+              type="text"
+              id="dang-tieu-de"
+              class="input-text"
+              placeholder="VD: Phòng trọ cao cấp gần ĐH Tây Nguyên"
+              required
+            />
+          </div>
 
-                <div class="nhom-truong">
-                    <label class="nhan-form">Đường phố (Khu vực Ea Tam) *</label>
-                    <select id="dang-duong" class="input-select">
-                        <option value="Y Wang">Đường Y Wang</option>
-                        <option value="Lê Duẩn">Đường Lê Duẩn</option>
-                        <option value="Giải Phóng">Đường Giải Phóng</option>
-                        <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
-                        <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
-                    </select>
-                </div>
+          <div class="nhom-truong">
+            <label class="nhan-form">Đường phố (Khu vực Ea Tam) *</label>
+            <select id="dang-duong" class="input-select">
+              <option value="Y Wang">Đường Y Wang</option>
+              <option value="Lê Duẩn">Đường Lê Duẩn</option>
+              <option value="Giải Phóng">Đường Giải Phóng</option>
+              <option value="Mai Thị Lựu">Đường Mai Thị Lựu</option>
+              <option value="Nguyễn An Ninh">Đường Nguyễn An Ninh</option>
+            </select>
+          </div>
 
-                <div class="nhom-truong">
-                    <label class="nhan-form">Địa chỉ chi tiết *</label>
-                    <input type="text" id="dang-dia-chi" class="input-text" placeholder="VD: 112 Y Wang, Ea Tam, Buôn Ma Thuột" required>
-                </div>
+          <div class="nhom-truong">
+            <label class="nhan-form">Địa chỉ chi tiết *</label>
+            <input
+              type="text"
+              id="dang-dia-chi"
+              class="input-text"
+              placeholder="VD: 112 Y Wang, Ea Tam, Buôn Ma Thuột"
+              required
+            />
+          </div>
 
-                <!-- TRƯỜNG TẢI ẢNH BẮT BUỘC ĐÃ ĐƯỢC CHUẨN HÓA GIAO DIỆN -->
-                <div class="nhom-truong">
-                    <label class="nhan-form">Tải ảnh thực tế phòng trọ từ thiết bị *</label>
-                    <input type="file" id="dang-anh" class="input-text" accept="image/*" required>
-                </div>
+          <!-- TRƯỜNG TẢI ẢNH BẮT BUỘC ĐÃ ĐƯỢC CHUẨN HÓA GIAO DIỆN -->
+          <div class="nhom-truong">
+            <label class="nhan-form"
+              >Tải ảnh thực tế phòng trọ từ thiết bị *</label
+            >
+            <input
+              type="file"
+              id="dang-anh"
+              class="input-text"
+              accept="image/*"
+              required
+            />
+          </div>
 
-                <div class="hai-cot">
-                    <div class="nhom-truong">
-                        <label class="nhan-form">Diện tích (m²) *</label>
-                        <input type="number" id="dang-dien-tich" class="input-text" placeholder="Ví dụ: 25" required>
-                    </div>
-                    <div class="nhom-truong">
-                        <label class="nhan-form">Loại phòng *</label>
-                        <select id="dang-loai-phong" class="input-select">
-                            <option value="single">Phòng đơn</option>
-                            <option value="double">Phòng đôi</option>
-                            <option value="dormitory">Ký túc xá</option>
-                        </select>
-                    </div>
-                </div>
+          <div class="hai-cot">
+            <div class="nhom-truong">
+              <label class="nhan-form">Diện tích (m²) *</label>
+              <input
+                type="number"
+                id="dang-dien-tich"
+                class="input-text"
+                placeholder="Ví dụ: 25"
+                required
+              />
+            </div>
+            <div class="nhom-truong">
+              <label class="nhan-form">Loại phòng *</label>
+              <select id="dang-loai-phong" class="input-select">
+                <option value="single">Phòng đơn</option>
+                <option value="double">Phòng đôi</option>
+                <option value="dormitory">Ký túc xá</option>
+              </select>
+            </div>
+          </div>
 
-                <!-- KHỐI 2: GIÁ CẢ & CHI PHÍ -->
-                <div class="dau-khung-nhap" style="margin-top: 40px;">
-                    <span class="emoji-khoi">💵</span>
-                    <div>
-                        <h3>Giá cả và chi phí</h3>
-                        <p>Thông tin chi phí thuê minh bạch</p>
-                    </div>
-                </div>
+          <!-- KHỐI 2: GIÁ CẢ & CHI PHÍ -->
+          <div class="dau-khung-nhap" style="margin-top: 40px">
+            <span class="emoji-khoi">💵</span>
+            <div>
+              <h3>Giá cả và chi phí</h3>
+              <p>Thông tin chi phí thuê minh bạch</p>
+            </div>
+          </div>
+          <!-- KHỐI 2B: CHI PHÍ DỊCH VỤ (TÙY CHỌN) -->
+          <div class="dau-khung-nhap" style="margin-top: 40px">
+            <span class="emoji-khoi">⚡</span>
+            <div>
+              <h3>Chi phí dịch vụ (tùy chọn)</h3>
+              <p>Để trống nếu không thu thêm</p>
+            </div>
+          </div>
+          <div class="hai-cot">
+            <div class="nhom-truong">
+              <label class="nhan-form">Tiền điện (đ/kWh)</label>
+              <input
+                type="number"
+                id="dang-gia-dien"
+                class="input-text"
+                placeholder="VD: 3500"
+              />
+            </div>
+            <div class="nhom-truong">
+              <label class="nhan-form">Tiền nước (đ/tháng)</label>
+              <input
+                type="number"
+                id="dang-gia-nuoc"
+                class="input-text"
+                placeholder="VD: 100000"
+              />
+            </div>
+          </div>
+          <div class="hai-cot">
+            <div class="nhom-truong">
+              <label class="nhan-form">Tiền wifi (đ/tháng)</label>
+              <input
+                type="number"
+                id="dang-gia-wifi"
+                class="input-text"
+                placeholder="VD: 100000"
+              />
+            </div>
+          </div>
+          <div class="hai-cot">
+            <div class="nhom-truong">
+              <label class="nhan-form">Giá thuê (đồng/tháng) *</label>
+              <input
+                type="number"
+                id="dang-gia"
+                class="input-text"
+                placeholder="VD: 1500000"
+                required
+              />
+            </div>
+            <div class="nhom-truong">
+              <label class="nhan-form">Tiền cọc (đồng) *</label>
+              <input
+                type="number"
+                id="dang-coc"
+                class="input-text"
+                placeholder="VD: 1000000"
+                required
+              />
+            </div>
+          </div>
 
-                <div class="hai-cot">
-                    <div class="nhom-truong">
-                        <label class="nhan-form">Giá thuê (đồng/tháng) *</label>
-                        <input type="number" id="dang-gia" class="input-text" placeholder="VD: 1500000" required>
-                    </div>
-                    <div class="nhom-truong">
-                        <label class="nhan-form">Tiền cọc (đồng) *</label>
-                        <input type="number" id="dang-coc" class="input-text" placeholder="VD: 1000000" required>
-                    </div>
-                </div>
+          <!-- KHỐI 3: TIỆN ÍCH & SỐ LƯỢNG -->
+          <div class="dau-khung-nhap" style="margin-top: 40px">
+            <span class="emoji-khoi">⚙️</span>
+            <div>
+              <h3>Tiện ích và số lượng</h3>
+              <p>Trang bị sẵn có và số phòng trống</p>
+            </div>
+          </div>
 
-                <!-- KHỐI 3: TIỆN ÍCH & SỐ LƯỢNG -->
-                <div class="dau-khung-nhap" style="margin-top: 40px;">
-                    <span class="emoji-khoi">⚙️</span>
-                    <div>
-                        <h3>Tiện ích và số lượng</h3>
-                        <p>Trang bị sẵn có và số phòng trống</p>
-                    </div>
-                </div>
+          <div class="nhom-truong">
+            <label class="nhan-form">Tiện ích sẵn có:</label>
+            <div class="nhom-hop-kiem" style="margin-top: 10px">
+              <label class="nhan-hop-kiem">
+                <input type="checkbox" value="wifi" class="tien-ich-dang" />
+                Wifi miễn phí
+              </label>
+              <label class="nhan-hop-kiem">
+                <input type="checkbox" value="may_giat" class="tien-ich-dang" />
+                Máy giặt dùng chung
+              </label>
+              <label class="nhan-hop-kiem">
+                <input type="checkbox" value="gac_lung" class="tien-ich-dang" />
+                Có gác lửng
+              </label>
+            </div>
+          </div>
 
-                <div class="nhom-truong">
-                    <label class="nhan-form">Tiện ích sẵn có:</label>
-                    <div class="nhom-hop-kiem" style="margin-top: 10px;">
-                        <label class="nhan-hop-kiem">
-                            <input type="checkbox" value="wifi" class="tien-ich-dang"> Wifi miễn phí
-                        </label>
-                        <label class="nhan-hop-kiem">
-                            <input type="checkbox" value="may_giat" class="tien-ich-dang"> Máy giặt dùng chung
-                        </label>
-                        <label class="nhan-hop-kiem">
-                            <input type="checkbox" value="gac_lung" class="tien-ich-dang"> Có gác lửng
-                        </label>
-                    </div>
-                </div>
+          <div class="nhom-truong" style="margin-top: 20px">
+            <label class="nhan-form">Số phòng trống hiện có *</label>
+            <input
+              type="number"
+              id="dang-so-luong"
+              class="input-text"
+              placeholder="VD: 3"
+              required
+            />
+          </div>
 
-                <div class="nhom-truong" style="margin-top: 20px;">
-                    <label class="nhan-form">Số phòng trống hiện có *</label>
-                    <input type="number" id="dang-so-luong" class="input-text" placeholder="VD: 3" required>
-                </div>
-
-                <!-- Nút Đăng tin nổi bật ở cuối hộp -->
-                <div class="nhom-nut-gui">
-                    <button type="submit" class="btn btn--chinh btn--tim">Đăng tin phòng trọ ngay</button>
-                </div>
-
-            </form>
-        </div>
+          <!-- Nút Đăng tin nổi bật ở cuối hộp -->
+          <div class="nhom-nut-gui">
+            <button type="submit" class="btn btn--chinh btn--tim">
+              Đăng tin phòng trọ ngay
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-</body>
+    <footer class="chan-trang">
+      <div class="khung-chua">
+        <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
 </html>

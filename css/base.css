@@ -1,20 +1,28 @@
+/* --- FILE: css/base.css --- */
 :root {
   --mau-chu-dao: #0062ff;
+  --mau-chu-dao-hover: #0052d4;
   --mau-chu-text: #1e293b;
   --mau-chu-phu: #718096;
   --nen-nhap: #f8fafc;
   --nen-trang: #ffffff;
   --mau-vien: #cbd5e1;
-  /* Dải màu chuyển sắc chính xác của mockup */
   --chuyen-sac-nut: linear-gradient(to right, #005eff, #00b050);
   --chuyen-sac-cta: linear-gradient(135deg, #005eff, #00b080);
+
+  /* Cấu trúc kích thước và khoảng cách kế thừa */
+  --bo-goc-nho: 6px;
+  --bo-goc-trung: 12px;
+  --bo-goc-lon: 20px;
+  --do-bong-nhe: 0 4px 10px rgba(0, 0, 0, 0.02);
+  --do-bong-dam: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif;
 }
 
 body {
@@ -23,21 +31,41 @@ body {
   line-height: 1.6;
 }
 
-/* ==================== ĐỊNH DẠNG CHỮ TIÊU ĐỀ TOÀN CỤC ==================== */
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Be Vietnam Pro', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 700;
   color: var(--mau-chu-text);
   line-height: 1.3;
 }
 
-/* Thiết lập kích thước chữ tiêu chuẩn kế thừa toàn trang */
-h1 { font-size: 32px; }
-h2 { font-size: 24px; }
-h3 { font-size: 18px; }
-h4 { font-size: 16px; }
+h1 {
+  font-size: 32px;
+  text-align: center;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 18px;
+}
+h4 {
+  font-size: 16px;
+}
 
-/* Class ẩn tiện ích toàn cục */
 .an {
   display: none !important;
+}
+/* ===== FOOTER CƠ BẢN ===== */
+
+.chan-trang {
+  background-color: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
 }
