@@ -800,3 +800,10 @@
   font-size: 13px;
   display: none;
 }
+#hien-doi-tuong{
+   text-align: center;
+            margin: 4px 0 2px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+}

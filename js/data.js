@@ -7,4 +7,4 @@ if (!localStorage.getItem("users")) {
 // Chỉ tạo mảng rỗng nếu chưa có key "rooms"
 if (!localStorage.getItem("rooms")) {
   localStorage.setItem("rooms", JSON.stringify([]));
-}
+}s

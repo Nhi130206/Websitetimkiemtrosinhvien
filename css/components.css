@@ -178,6 +178,8 @@
   position: relative;
   height: 190px;
   background-color: #cbd5e1;
+  overflow: hidden;  /* Cắt phần ảnh thừa */
+
 }
 
 .card-phong__nhan {
@@ -253,9 +255,8 @@
 
 .card-phong__vach-ngan {
   border: none;
-  border-top: 1px solid #2266c0;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  margin-bottom: 15px;
 }
 
 .card-phong__dong-gia {
