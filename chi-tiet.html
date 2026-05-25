@@ -1,193 +1,129 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
     <title>Chi tiết phòng trọ - NhaTroSV</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-    <link rel="stylesheet" href="css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <header class="dau-trang">
-      <div class="khung-chua">
-        <nav class="thanh-dieu-huong">
-          <!-- Logo -->
-          <a href="index.html" class="logo">
-            <span>🏠 NhaTroSV</span>
-          </a>
-
-          <!-- Menu -->
-          <ul class="menu">
-            <li><a href="index.html" class="menu__link">Trang chủ</a></li>
-            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
-            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
-          </ul>
-
-          <!-- Actions (Sẽ được JS tự động thay đổi khi đã đăng nhập) -->
-          <div class="hanh-dong" id="vung-hanh-dong">
-            <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
-            <a href="dang-nhap.html" class="btn btn--login active">Đăng nhập</a>
-          </div>
-        </nav>
-      </div>
+        <div class="khung-chua">
+            <nav class="thanh-dieu-huong">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span>🏠 NhaTroSV</span>
+                </a>
+                
+                <!-- Menu -->
+                <ul class="menu">
+                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+                </ul>
+                
+                <!-- Actions (Sẽ được JS tự động thay đổi khi đã đăng nhập) -->
+                <div class="hanh-dong" id="vung-hanh-dong">
+                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+                    <a href="dang-nhap.html" class="btn btn--login active">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
     </header>
     <div class="trang-chi-tiet" id="chi-tiet-trang">
-      <div class="khung-chua">
-        <div class="duong-dan-trang">
-          <a href="index.html">Trang chủ</a> /
-          <a href="tim-kiem.html">Tìm kiếm</a> /
-          <span id="duong-dan-tieu-de">Chi tiết phòng</span>
-        </div>
-        <div class="dau-chi-tiet" id="dau-chi-tiet">
-          <!-- Nội dung tĩnh: h1, địa chỉ, rating, tag -->
-          <h1 class="tieu-de-chi-tiet" id="chi-tiet-ten">Phòng trọ</h1>
-          <div class="thong-tin-phu-chi-tiet">
-            <div id="chi-tiet-dia-chi">📍 Địa chỉ</div>
-            <div id="chi-tiet-khoang-cach">
-              🏫 Ea Tam, cách ĐH Tây Nguyên 0.5 km
+        <div class="khung-chua">
+            <div class="duong-dan-trang">
+                <a href="index.html">Trang chủ</a> / <a href="tim-kiem.html">Tìm kiếm</a> / <span id="duong-dan-tieu-de">Chi tiết phòng</span>
             </div>
-            <div style="color: #fbbf24" id="chi-tiet-rating">
-              ★ 0 (0 đánh giá)
+            <div class="dau-chi-tiet" id="dau-chi-tiet">
+                <!-- Nội dung tĩnh: h1, địa chỉ, rating, tag -->
+                <h1 class="tieu-de-chi-tiet" id="chi-tiet-ten">Phòng trọ</h1>
+                <div class="thong-tin-phu-chi-tiet">
+                    <div id="chi-tiet-dia-chi">📍 Địa chỉ</div>
+                    <div id="chi-tiet-khoang-cach">🏫 Ea Tam, cách ĐH Tây Nguyên 0.5 km</div>
+                    <div style="color: #fbbf24;" id="chi-tiet-rating">★ 0 (0 đánh giá)</div>
+                </div>
+                <span class="the-phong-chon__nhan" id="chi-tiet-tag">Còn phòng</span>
             </div>
-          </div>
-          <span class="the-phong-chon__nhan" id="chi-tiet-tag">Còn phòng</span>
-        </div>
-        <div class="luoi-chi-tiet">
-          <div class="noi-dung-chinh-chi-tiet">
-            <div class="the-chi-tiet">
-              <div class="khung-anh-placeholder" id="khung-anh-phong">
-                <img
-                  id="chi-tiet-anh"
-                  src=""
-                  style="width: 100%; height: 100%; object-fit: cover"
-                  onerror="
-                    this.style.display = 'none';
-                    this.nextSibling.style.display = 'flex';
-                  "
-                />
-                <div class="room-image-placeholder" style="display: none">
-                  Ảnh phòng trọ minh họa
+            <div class="luoi-chi-tiet">
+                <div class="noi-dung-chinh-chi-tiet">
+                    <div class="the-chi-tiet">
+                        <div class="khung-anh-placeholder" id="khung-anh-phong">
+                            <img id="chi-tiet-anh" src="" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'; this.nextSibling.style.display='flex'">
+                            <div class="room-image-placeholder" style="display:none;">Ảnh phòng trọ minh họa</div>
+                        </div>
+                    </div>
+                    <div class="luoi-thong-tin-phu" id="luoi-thong-tin-phu">
+                        <!-- 3 ô tĩnh: diện tích, loại phòng, đánh giá -->
+                        <div class="hop-thong-tin-phu">
+                            <div class="nhan-thong-tin-phu">📐 Diện tích</div>
+                            <div class="gia-tri-thong-tin-phu" id="thongso-dien-tich">0 m²</div>
+                        </div>
+                        <div class="hop-thong-tin-phu">
+                            <div class="nhan-thong-tin-phu">🚪 Loại phòng</div>
+                            <div class="gia-tri-thong-tin-phu" id="thongso-loai">Đơn</div>
+                        </div>
+                        <div class="hop-thong-tin-phu">
+                            <div class="nhan-thong-tin-phu">★ Đánh giá</div>
+                            <div class="gia-tri-thong-tin-phu" id="thongso-rating">0/5</div>
+                        </div>
+                    </div>
+                    <div class="the-chi-tiet">
+                        <h2 class="tieu-de-the">Chi phí chi tiết</h2>
+                        <div id="bang-chi-phi">
+                            <!-- Các dòng chi phí tĩnh, chỉ cập nhật giá trị -->
+                            <div class="dong-chi-phi"><div class="nhan-chi-phi">📅 Tiền thuê hàng tháng</div><div class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat" id="chiphi-thue">0đ</div></div>
+                            <div class="dong-chi-phi"><div class="nhan-chi-phi">📅 Tiền cọc (1 tháng)</div><div class="gia-tri-chi-phi" id="chiphi-coc">0đ</div></div>
+                            <div class="dong-chi-phi"><div class="nhan-chi-phi">⚡ Điện (ước tính 100 kWh)</div><div class="gia-tri-chi-phi" id="chiphi-dien">0đ</div></div>
+                            <div class="dong-chi-phi"><div class="nhan-chi-phi">💧 Nước định mức</div><div class="gia-tri-chi-phi" id="chiphi-nuoc">0đ</div></div>
+                            <div class="dong-chi-phi"><div class="nhan-chi-phi">📶 Wifi tốc độ cao</div><div class="gia-tri-chi-phi" id="chiphi-wifi">0đ</div></div>
+                            <div class="dong-chi-phi" style="border-top: 2px solid #e5e7eb; padding-top: 20px; margin-top: 10px;">
+                                <div class="nhan-chi-phi" style="font-weight: 700; font-size: 16px;">Tổng ước tính/tháng</div>
+                                <div class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat" style="font-size: 22px;" id="chiphi-tong">0đ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="the-chi-tiet">
+                        <h2 class="tieu-de-the">Tiện ích sẵn có</h2>
+                        <div class="danh-sach-tien-ich" id="danh-sach-tien-ich">
+                            <!-- 4 mục tĩnh, JS chỉ cập nhật nội dung text -->
+                            <div class="muc-tien-ich" id="tienich-wifi">✔️ Wifi miễn phí</div>
+                            <div class="muc-tien-ich" id="tienich-gac">❌ Không gác lửng</div>
+                            <div class="muc-tien-ich" id="tienich-maygiat">❌ Không máy giặt</div>
+                            <div class="muc-tien-ich" id="tienich-cuaso">✔️ Cửa sổ thoáng mát</div>
+                        </div>
+                    </div>
+                    <div class="the-chi-tiet">
+                        <h2 class="tieu-de-the">Vị trí phòng trọ trên bản đồ</h2>
+                        <div id="ban-do-chi-tiet"></div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="luoi-thong-tin-phu" id="luoi-thong-tin-phu">
-              <!-- 3 ô tĩnh: diện tích, loại phòng, đánh giá -->
-              <div class="hop-thong-tin-phu">
-                <div class="nhan-thong-tin-phu">📐 Diện tích</div>
-                <div class="gia-tri-thong-tin-phu" id="thongso-dien-tich">
-                  0 m²
-                </div>
-              </div>
-              <div class="hop-thong-tin-phu">
-                <div class="nhan-thong-tin-phu">🚪 Loại phòng</div>
-                <div class="gia-tri-thong-tin-phu" id="thongso-loai">Đơn</div>
-              </div>
-              <div class="hop-thong-tin-phu">
-                <div class="nhan-thong-tin-phu">★ Đánh giá</div>
-                <div class="gia-tri-thong-tin-phu" id="thongso-rating">0/5</div>
-              </div>
-            </div>
-            <div class="the-chi-tiet">
-              <h2 class="tieu-de-the">Chi phí chi tiết</h2>
-              <div id="bang-chi-phi">
-                <!-- Các dòng chi phí tĩnh, chỉ cập nhật giá trị -->
-                <div class="dong-chi-phi">
-                  <div class="nhan-chi-phi">📅 Tiền thuê hàng tháng</div>
-                  <div
-                    class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat"
-                    id="chiphi-thue"
-                  >
-                    0đ
-                  </div>
-                </div>
-                <div class="dong-chi-phi">
-                  <div class="nhan-chi-phi">📅 Tiền cọc (1 tháng)</div>
-                  <div class="gia-tri-chi-phi" id="chiphi-coc">0đ</div>
-                </div>
-                <div class="dong-chi-phi">
-                  <div class="nhan-chi-phi">⚡ Điện (ước tính 100 kWh)</div>
-                  <div class="gia-tri-chi-phi" id="chiphi-dien">0đ</div>
-                </div>
-                <div class="dong-chi-phi">
-                  <div class="nhan-chi-phi">💧 Nước định mức</div>
-                  <div class="gia-tri-chi-phi" id="chiphi-nuoc">0đ</div>
-                </div>
-                <div class="dong-chi-phi">
-                  <div class="nhan-chi-phi">📶 Wifi tốc độ cao</div>
-                  <div class="gia-tri-chi-phi" id="chiphi-wifi">0đ</div>
-                </div>
-                <div
-                  class="dong-chi-phi"
-                  style="
-                    border-top: 2px solid #e5e7eb;
-                    padding-top: 20px;
-                    margin-top: 10px;
-                  "
-                >
-                  <div
-                    class="nhan-chi-phi"
-                    style="font-weight: 700; font-size: 16px"
-                  >
-                    Tổng ước tính/tháng
-                  </div>
-                  <div
-                    class="gia-tri-chi-phi gia-tri-chi-phi--noi-bat"
-                    style="font-size: 22px"
-                    id="chiphi-tong"
-                  >
-                    0đ
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="the-chi-tiet">
-              <h2 class="tieu-de-the">Tiện ích sẵn có</h2>
-              <div class="danh-sach-tien-ich" id="danh-sach-tien-ich">
-                <!-- 4 mục tĩnh, JS chỉ cập nhật nội dung text -->
-                <div class="muc-tien-ich" id="tienich-wifi">
-                  ✔️ Wifi miễn phí
-                </div>
-                <div class="muc-tien-ich" id="tienich-gac">
-                  ❌ Không gác lửng
-                </div>
-                <div class="muc-tien-ich" id="tienich-maygiat">
-                  ❌ Không máy giặt
-                </div>
-                <div class="muc-tien-ich" id="tienich-cuaso">
-                  ✔️ Cửa sổ thoáng mát
-                </div>
-              </div>
-            </div>
-            <div class="the-chi-tiet">
-              <h2 class="tieu-de-the">Vị trí phòng trọ trên bản đồ</h2>
-              <div id="ban-do-chi-tiet"></div>
-            </div>
-          </div>
-          <!-- Cột phải: thông tin liên hệ tĩnh (đã có) -->
-          <div>
-            <div class="the-lien-he">
-              <div class="hop-gia-chinh">
-                <div class="gia-chinh" id="lien-he-gia">0đ</div>
-                <p>/ tháng</p>
-              </div>
-              <div class="thong-tin-chu-tro">
-                <div class="anh-dai-dien-chu-tro">👤</div>
+                <!-- Cột phải: thông tin liên hệ tĩnh (đã có) -->
                 <div>
-                  <div style="font-weight: 700" id="lien-he-ten">Chủ trọ</div>
-                  <div style="font-size: 12px; color: #00c853">
-                    ✔️ Đã xác thực thông tin
-                  </div>
+                    <div class="the-lien-he">
+                        <div class="hop-gia-chinh">
+                            <div class="gia-chinh" id="lien-he-gia">0đ</div>
+                            <p>/ tháng</p>
+                        </div>
+                        <div class="thong-tin-chu-tro">
+                            <div class="anh-dai-dien-chu-tro">👤</div>
+                            <div>
+                                <div style="font-weight: 700;" id="lien-he-ten">Chủ trọ</div>
+                                <div style="font-size: 12px; color: #00c853;">✔️ Đã xác thực thông tin</div>
+                            </div>
+                        </div>
+                        <div class="nhom-nut-lien-he">
+                            <button class="btn-giao-tiep btn-giao-tiep--phone" id="lien-he-btn-goi">📞 Gọi điện thoại</button>
+                            <button class="btn-giao-tiep btn-giao-tiep--nhan-tin" id="lien-he-btn-nhan">✉️ Nhắn tin nhanh</button>
+                            <button class="btn-giao-tiep btn-giao-tiep--dat-lich" id="lien-he-btn-datlich">📅 Đặt lịch xem phòng</button>
+                        </div>
+                        <div class="hop-luu-y">💡 <strong>Lưu ý quan trọng:</strong> Luôn đi xem phòng trực tiếp trước khi giao tiền đặt cọc để tránh bị lừa đảo mạng.</div>
+                    </div>
                 </div>
               </div>
               <div class="nhom-nut-lien-he">

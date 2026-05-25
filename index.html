@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
     <title>NhaTroSV - Đại học Tây Nguyên</title>
 
     <!-- Fonts -->
@@ -24,29 +23,27 @@
   <body>
     <!-- ==================== HEADER ==================== -->
     <header class="dau-trang">
-      <div class="khung-chua">
-        <nav class="thanh-dieu-huong">
-          <!-- Logo -->
-          <a href="index.html" class="logo">
-            <span>🏠 NhaTroSV</span>
-          </a>
-
-          <!-- Menu -->
-          <ul class="menu">
-            <li>
-              <a href="index.html" class="menu__link active">Trang chủ</a>
-            </li>
-            <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
-            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
-          </ul>
-
-          <!-- Actions -->
-          <div class="hanh-dong" id="vung-hanh-dong">
-            <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
-            <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
-          </div>
-        </nav>
-      </div>
+        <div class="khung-chua">
+            <nav class="thanh-dieu-huong">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span>🏠 NhaTroSV</span>
+                </a>
+                
+                <!-- Menu -->
+                <ul class="menu">
+                    <li><a href="index.html" class="menu__link active">Trang chủ</a></li>
+                    <li><a href="ban-do.html" class="menu__link">Bản đồ</a></li>
+                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+                </ul>
+                
+                <!-- Actions -->
+                <div class="hanh-dong" id="vung-hanh-dong">
+                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- ==================== HERO SECTION ==================== -->
@@ -186,12 +183,40 @@
 
     <!-- ==================== TRỌ MỚI XUẤT HIỆN ==================== -->
     <section class="tro-moi">
-      <div class="khung-chua">
-        <div class="tieu-de-vung">
-          <div class="ben-trai">
-            <h2 class="tieu-de-phan">Phòng trọ nổi bật</h2>
-          </div>
-          <a href="tim-kiem.html" class="xem-tat-ca">Xem tất cả →</a>
+        <div class="khung-chua">
+            <div class="tieu-de-vung">
+                <div class="ben-trai">
+                    <h2 class="tieu-de-phan">Phòng trọ nổi bật</h2>
+                </div>
+                <a href="tim-kiem.html" class="xem-tat-ca">Xem tất cả →</a>
+            </div>
+            
+            <!-- Thùng chứa danh sách phòng trọ nổi bật -->
+            <div id="danh-sach-tro" class="luoi-phong"></div> 
+
+            <!-- THẺ MẪU CARD PHÒNG TĨNH -->
+            <template id="mau-card-phong">
+                <a href="#" class="card-phong">
+                    <div class="card-phong__khung-anh">
+                        <div class="card-phong__nhan">Còn phòng</div>
+                        <img class="card-phong__anh-that" src="" alt="ảnh phòng">
+                        <div class="room-image-placeholder">Ảnh phòng trọ mẫu</div>
+                    </div>
+                    <div class="card-phong__noi-dung">
+                        <h3 class="card-phong__tieu-de">Tiêu đề</h3>
+                        <p class="card-phong__dia-chi">📍 Địa chỉ</p>
+                        <div class="card-phong__thong-so">
+                            <span class="card-phong-dien-tich">📐 0 m²</span>
+                            <span class="card-phong-loai-phong">🚪 Phòng đơn</span>
+                        </div>
+                        <div class="card-phong__vach-ngan"></div>
+                        <div class="card-phong__dong-gia">
+                            <span class="card-phong__nhan-gia">Giá thuê:</span>
+                            <strong class="card-phong__gia">0đ</strong>
+                        </div>
+                    </div>
+                </a>
+            </template>
         </div>
 
         <!-- Thùng chứa danh sách phòng - sẽ được render bằng JS -->

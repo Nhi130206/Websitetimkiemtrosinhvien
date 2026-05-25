@@ -1,4 +1,4 @@
-/* --- FILE: css/base.css --- */
+/* ---------- VARIABLES & RESET ---------- */
 :root {
   --mau-chu-dao: #0062ff;
   --mau-chu-dao-hover: #0052d4;
@@ -9,8 +9,6 @@
   --mau-vien: #cbd5e1;
   --chuyen-sac-nut: linear-gradient(to right, #005eff, #00b050);
   --chuyen-sac-cta: linear-gradient(135deg, #005eff, #00b080);
-
-  /* Cấu trúc kích thước và khoảng cách kế thừa */
   --bo-goc-nho: 6px;
   --bo-goc-trung: 12px;
   --bo-goc-lon: 20px;
@@ -37,12 +35,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 700;
   color: var(--mau-chu-text);
   line-height: 1.3;
 }
-
 h1 {
   font-size: 32px;
   text-align: center;
@@ -53,19 +49,6 @@ h2 {
 h3 {
   font-size: 18px;
 }
-h4 {
-  font-size: 16px;
-}
-
 .an {
   display: none !important;
-}
-/* ===== FOOTER CƠ BẢN ===== */
-
-.chan-trang {
-  background-color: #1e293b;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
 }

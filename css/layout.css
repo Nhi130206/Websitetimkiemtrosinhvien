@@ -1,3 +1,4 @@
+/* ---------- LAYOUT & CONTAINER ---------- */
 .khung-chua {
   width: 100%;
   max-width: 1200px;
@@ -13,15 +14,13 @@
   top: 0;
   z-index: 1000;
 }
-
 .thanh-dieu-huong {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
 }
-
-.thanh-dieu-huong .logo {
+.logo {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -30,14 +29,12 @@
   color: var(--mau-chu-dao);
   text-decoration: none;
 }
-
 .menu {
   display: flex;
   list-style: none;
   gap: 10px;
   align-items: center;
 }
-
 .menu__link {
   text-decoration: none;
   color: var(--mau-chu-text);
@@ -47,31 +44,22 @@
   border-radius: 20px;
   transition: all 0.2s;
 }
-
-.menu__link:hover {
-  color: var(--mau-chu-dao);
-}
-
+.menu__link:hover,
 .menu__link.active {
-  background-color: #ebf3ff;
   color: var(--mau-chu-dao);
+  background-color: #ebf3ff;
 }
-
 .hanh-dong {
   display: flex;
   gap: 12px;
   align-items: center;
 }
-
-/* GIAO DIỆN ICON NGƯỜI DÙNG KHI ĐÃ ĐĂNG NHẬP */
 .user-profile-header {
   position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
-/* Avatar tròn chữ cái đầu */
 .user-avatar {
   width: 38px;
   height: 38px;
@@ -79,43 +67,42 @@
   background-color: var(--mau-chu-dao);
   color: #fff;
   font-weight: 700;
-  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  user-select: none;
   border: 2px solid #c7dcff;
-  text-decoration: none;
   overflow: hidden;
-  flex-shrink: 0;
+  text-decoration: none;
 }
-
 .user-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
-/* ==================== RESPONSIVE HEADER (CHO MÀN HÌNH NHỎ) ==================== */
-@media (max-width: 992px) {
+
+/* Footer */
+.chan-trang {
+  background-color: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* ---------- RESPONSIVE (Mobile) ---------- */
+@media (max-width: 768px) {
+  .thanh-dieu-huong {
+    flex-wrap: wrap;
+  }
   .menu {
-    display: none; /* Ẩn thực đơn chữ khi màn hình bị thu nhỏ tránh đè chữ */
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
   }
-
-  .nut-menu {
-    display: block; /* Hiện biểu tượng 3 gạch để sau này làm menu rút gọn */
-    margin-left: 15px;
-  }
-
-  .hanh-dong {
-    gap: 8px; /* Thu hẹp khoảng cách các nút đăng nhập */
-  }
-
-  /* Thu nhỏ kích thước các nút bấm trên giao diện hẹp */
-  .btn {
-    padding: 6px 12px;
-    font-size: 13px;
+  .khung-chua {
+    padding: 0 12px;
   }
 }
 @media (max-width: 992px) {

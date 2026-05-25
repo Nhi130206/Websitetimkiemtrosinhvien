@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
     <title>Bản đồ tìm trọ - NhaTroSV</title>
 
     <!-- Fonts -->
@@ -31,27 +30,27 @@
   <body>
     <!-- ==================== HEADER ==================== -->
     <header class="dau-trang">
-      <div class="khung-chua">
-        <nav class="thanh-dieu-huong">
-          <!-- Logo -->
-          <a href="index.html" class="logo">
-            <span>🏠 NhaTroSV</span>
-          </a>
-
-          <!-- Menu -->
-          <ul class="menu">
-            <li><a href="index.html" class="menu__link">Trang chủ</a></li>
-            <li><a href="ban-do.html" class="menu__link active">Bản đồ</a></li>
-            <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
-          </ul>
-
-          <!-- Actions -->
-          <div class="hanh-dong" id="vung-hanh-dong">
-            <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
-            <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
-          </div>
-        </nav>
-      </div>
+        <div class="khung-chua">
+            <nav class="thanh-dieu-huong">
+                <!-- Logo -->
+                <a href="index.html" class="logo">
+                    <span>🏠 NhaTroSV</span>
+                </a>
+                
+                <!-- Menu -->
+                <ul class="menu">
+                    <li><a href="index.html" class="menu__link">Trang chủ</a></li>
+                    <li><a href="ban-do.html" class="menu__link active">Bản đồ</a></li>
+                    <li><a href="tim-kiem.html" class="menu__link">Tìm kiếm</a></li>
+                </ul>
+                
+                <!-- Actions -->
+                <div class="hanh-dong" id="vung-hanh-dong">
+                    <a href="dang-tin.html" class="btn btn--landlord">Cho chủ trọ</a>
+                    <a href="dang-nhap.html" class="btn btn--login">Đăng nhập</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <!-- ==================== KHU VỰC BẢN ĐỒ ==================== -->
@@ -68,14 +67,19 @@
                 Khu vực quanh Đại học Tây Nguyên
               </div>
             </div>
-            <div class="chuyen-che-do">
-              <button class="nut-che-do active">🗺️ Bản đồ</button>
-              <button
-                class="nut-che-do"
-                onclick="window.location.href = 'tim-kiem.html'"
-              >
-                📋 Danh sách
-              </button>
+
+            <!-- Div chứa bản đồ thực tế -->
+            <div id="ban-do-chinh"></div>
+           <!-- Thẻ hiển thị nhanh thông tin phòng trọ khi nhấn vào ghim bản đồ -->
+        <div class="the-phong-chon" id="the-phong-chon" style="display: none;">
+            <button class="nut-dong-the" id="nut-dong-the">×</button>
+            <div class="the-phong-chon__khung">
+                <span class="the-phong-chon__nhan" id="chon-tag">Còn phòng</span>
+                <h4 id="chon-title">Tiêu đề</h4>
+                <p id="chon-address">📍 Địa chỉ</p>
+                <p id="chon-area">📐 0 m²</p>
+                <div><strong id="chon-price">0đ/tháng</strong></div>
+                <a href="#" id="chon-link">Xem chi tiết</a>
             </div>
           </div>
 
@@ -90,21 +94,12 @@
             </select>
           </div>
         </div>
-
-        <!-- Div chứa bản đồ thực tế -->
-        <div id="ban-do-chinh"></div>
-
-        <!-- Thẻ hiển thị nhanh thông tin phòng trọ khi nhấn vào ghim bản đồ -->
-        <div class="the-phong-chon" id="the-phong-chon" style="display: none">
-          <button class="nut-dong-the" id="nut-dong-the">×</button>
-          <div id="noi-dung-phong-chon"></div>
         </div>
-      </div>
     </div>
     <footer class="chan-trang">
-      <div class="khung-chua">
-        <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
-      </div>
+        <div class="khung-chua">
+            <p>&copy; 2026 NhaTroSV. All rights reserved.</p>
+        </div>
     </footer>
-  </body>
+</body>
 </html>
